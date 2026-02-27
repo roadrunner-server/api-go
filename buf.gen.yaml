@@ -1,6 +1,4 @@
 version: v2
-inputs:
-  - module: proto/api/roadrunner/api
 plugins:
   - remote: buf.build/protocolbuffers/go:v1.36.6
     out: build

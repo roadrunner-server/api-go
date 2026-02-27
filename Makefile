@@ -15,9 +15,12 @@ install:
 update-proto-submodule:
 	@printf $(COLOR) "Updating api submodule..."
 	git -c protocol.file.allow=always submodule update --init --force --remote proto/api
+	cd proto/api && git submodule update --init --force
+	rm -f proto/api/buf.gen.yaml proto/api/buf.lock
+	rm -f proto/api/third_party/api/buf.yaml proto/api/third_party/api/buf.gen.yaml proto/api/third_party/api/buf.lock
 
 generate:
-	buf generate
+	buf generate proto/api/roadrunner/api
 
 clean:
 	rm -rf build
