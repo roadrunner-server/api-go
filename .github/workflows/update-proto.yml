@@ -43,8 +43,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
-          go-version-file: 'go.mod'
-          check-latest: true
+          go-version: 'stable'
 
       - name: Setup Buf
         uses: bufbuild/buf-setup-action@v1
