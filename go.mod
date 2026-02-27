@@ -2,6 +2,8 @@ module github.com/roadrunner-server/api-go/v5
 
 go 1.26
 
+toolchain go1.26.0
+
 require (
 	go.temporal.io/api v1.62.2
 	google.golang.org/grpc v1.79.1
