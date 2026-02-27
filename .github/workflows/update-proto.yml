@@ -1,0 +1,70 @@
+name: "Update Proto"
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch in api-go repo to update protos (default: master)"
+        required: false
+        default: master
+      commit_author:
+        description: "Commit author username"
+        required: true
+      commit_author_email:
+        description: "Commit author email"
+        required: true
+      commit_message:
+        description: "Commit message"
+        required: true
+
+jobs:
+  sync:
+    name: "Update proto"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Generate token
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.RR_CICD_APP_ID }}
+          private-key: ${{ secrets.RR_CICD_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.generate_token.outputs.token }}
+          persist-credentials: true
+          ref: ${{ github.event.inputs.branch }}
+          submodules: true
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+          check-latest: true
+
+      - name: Setup Buf
+        uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Rebuild proto
+        run: make update-proto
+
+      - name: Build check
+        run: go build ./...
+
+      - name: Commit update
+        env:
+          GIT_AUTHOR_NAME: ${{ github.event.inputs.commit_author }}
+          GIT_AUTHOR_EMAIL: ${{ github.event.inputs.commit_author_email }}
+          GIT_COMMITTER_NAME: ${{ github.event.inputs.commit_author }}
+          GIT_COMMITTER_EMAIL: ${{ github.event.inputs.commit_author_email }}
+          GIT_COMMIT_MESSAGE: ${{ github.event.inputs.commit_message }}
+        run: |
+          git add .
+          git commit -m "${GIT_COMMIT_MESSAGE}" || echo "No changes to commit"
+          git push
