@@ -23,7 +23,7 @@ generate:
 	buf generate proto/api/roadrunner/api
 
 clean:
-	rm -rf build
+	rm -rf applogger centrifugo common http jobs kv lock service status temporal websockets
 
 regenerate: clean generate
 
