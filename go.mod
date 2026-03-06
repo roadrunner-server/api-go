@@ -1,4 +1,4 @@
-module github.com/roadrunner-server/api-go/v5
+module github.com/roadrunner-server/api-go/v6
 
 go 1.26
 

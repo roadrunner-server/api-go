@@ -8,8 +8,8 @@
 </p>
 
 <p align="center">
-  <a href="https://pkg.go.dev/github.com/roadrunner-server/api-go/v5"><img src="https://godoc.org/github.com/roadrunner-server/api-go/v5?status.svg"></a>
-  <a href="https://goreportcard.com/report/github.com/roadrunner-server/api-go/v5"><img src="https://goreportcard.com/badge/github.com/roadrunner-server/api-go/v5"></a>
+  <a href="https://pkg.go.dev/github.com/roadrunner-server/api-go/v6"><img src="https://godoc.org/github.com/roadrunner-server/api-go/v6?status.svg"></a>
+  <a href="https://goreportcard.com/report/github.com/roadrunner-server/api-go/v6"><img src="https://goreportcard.com/badge/github.com/roadrunner-server/api-go/v6"></a>
   <a href="https://discord.gg/TFeEmCs"><img src="https://img.shields.io/badge/discord-chat-magenta.svg"></a>
 </p>
 
@@ -22,7 +22,7 @@ Generated Go files from the RoadRunner [api](https://github.com/roadrunner-serve
 ## How to use
 
 ```bash
-go get github.com/roadrunner-server/api-go/v5
+go get github.com/roadrunner-server/api-go/v6
 ```
 
 ## Rebuild
