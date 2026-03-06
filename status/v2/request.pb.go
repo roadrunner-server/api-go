@@ -71,7 +71,7 @@ const file_status_v2_request_proto_rawDesc = "" +
 	"\n" +
 	"\x17status/v2/request.proto\x12\tstatus.v2\"'\n" +
 	"\rStatusRequest\x12\x16\n" +
-	"\x06plugin\x18\x01 \x01(\tR\x06pluginB}Z9github.com/roadrunner-server/api-go/v5/status/v2;statusV2\xca\x02\x18RoadRunner\\Status\\DTO\\V2\xe2\x02$RoadRunner\\Status\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x06plugin\x18\x01 \x01(\tR\x06pluginB}Z9github.com/roadrunner-server/api-go/v6/status/v2;statusV2\xca\x02\x18RoadRunner\\Status\\DTO\\V2\xe2\x02$RoadRunner\\Status\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_status_v2_request_proto_rawDescOnce sync.Once

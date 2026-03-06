@@ -165,7 +165,7 @@ const file_http_v2_request_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01\x1aW\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
-	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01BuZ5github.com/roadrunner-server/api-go/v5/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01BuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_http_v2_request_proto_rawDescOnce sync.Once

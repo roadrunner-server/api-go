@@ -126,7 +126,7 @@ const file_status_v1_status_proto_rawDesc = "" +
 	"\x06plugin\x18\x01 \x01(\tR\x06plugin\"8\n" +
 	"\bResponse\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x03R\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessageB}Z9github.com/roadrunner-server/api-go/v5/status/v1;statusV1\xca\x02\x18RoadRunner\\Status\\DTO\\V1\xe2\x02$RoadRunner\\Status\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\amessage\x18\x02 \x01(\tR\amessageB}Z9github.com/roadrunner-server/api-go/v6/status/v1;statusV1\xca\x02\x18RoadRunner\\Status\\DTO\\V1\xe2\x02$RoadRunner\\Status\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_status_v1_status_proto_rawDescOnce sync.Once

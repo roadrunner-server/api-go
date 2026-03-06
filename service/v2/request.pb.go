@@ -195,7 +195,7 @@ const file_service_v2_request_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"(\n" +
 	"\x12ServiceInfoRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04nameB\x81\x01Z;github.com/roadrunner-server/api-go/v5/service/v2;serviceV2\xca\x02\x19RoadRunner\\Service\\DTO\\V2\xe2\x02%RoadRunner\\Service\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x04name\x18\x01 \x01(\tR\x04nameB\x81\x01Z;github.com/roadrunner-server/api-go/v6/service/v2;serviceV2\xca\x02\x19RoadRunner\\Service\\DTO\\V2\xe2\x02%RoadRunner\\Service\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_service_v2_request_proto_rawDescOnce sync.Once

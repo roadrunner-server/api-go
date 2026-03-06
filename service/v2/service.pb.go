@@ -7,7 +7,7 @@
 package serviceV2
 
 import (
-	v1 "github.com/roadrunner-server/api-go/v5/common/v1"
+	v1 "github.com/roadrunner-server/api-go/v6/common/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -110,7 +110,7 @@ const file_service_v2_service_proto_rawDesc = "" +
 	"\x03pid\x18\x02 \x01(\x05R\x03pid\x12!\n" +
 	"\fmemory_usage\x18\x03 \x01(\x04R\vmemoryUsage\x12\x18\n" +
 	"\acommand\x18\x04 \x01(\tR\acommand\x12)\n" +
-	"\x06status\x18\x05 \x01(\v2\x11.common.v1.StatusR\x06statusB\x81\x01Z;github.com/roadrunner-server/api-go/v5/service/v2;serviceV2\xca\x02\x19RoadRunner\\Service\\DTO\\V2\xe2\x02%RoadRunner\\Service\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x06status\x18\x05 \x01(\v2\x11.common.v1.StatusR\x06statusB\x81\x01Z;github.com/roadrunner-server/api-go/v6/service/v2;serviceV2\xca\x02\x19RoadRunner\\Service\\DTO\\V2\xe2\x02%RoadRunner\\Service\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_service_v2_service_proto_rawDescOnce sync.Once

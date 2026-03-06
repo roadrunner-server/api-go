@@ -89,7 +89,7 @@ const file_websockets_v2_websockets_proto_rawDesc = "" +
 	"\x10WebsocketMessage\x12\x18\n" +
 	"\acommand\x18\x01 \x01(\tR\acommand\x12\x16\n" +
 	"\x06topics\x18\x02 \x03(\tR\x06topics\x12\x18\n" +
-	"\apayload\x18\x03 \x01(\fR\apayloadB\x8d\x01ZAgithub.com/roadrunner-server/api-go/v5/websockets/v2;websocketsV2\xca\x02\x1cRoadRunner\\Websockets\\DTO\\V2\xe2\x02(RoadRunner\\Websockets\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\apayload\x18\x03 \x01(\fR\apayloadB\x8d\x01ZAgithub.com/roadrunner-server/api-go/v6/websockets/v2;websocketsV2\xca\x02\x1cRoadRunner\\Websockets\\DTO\\V2\xe2\x02(RoadRunner\\Websockets\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_websockets_v2_websockets_proto_rawDescOnce sync.Once

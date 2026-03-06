@@ -7,7 +7,7 @@
 package temporalV1
 
 import (
-	v12 "github.com/roadrunner-server/api-go/v5/common/v1"
+	v12 "github.com/roadrunner-server/api-go/v6/common/v1"
 	v11 "go.temporal.io/api/common/v1"
 	v1 "go.temporal.io/api/failure/v1"
 	v13 "go.temporal.io/api/history/v1"
@@ -431,7 +431,7 @@ const file_temporal_v1_temporal_proto_rawDesc = "" +
 	"\x06status\x18\x01 \x01(\v2\x11.common.v1.StatusR\x06status\"\x90\x01\n" +
 	"\aHistory\x12:\n" +
 	"\ahistory\x18\x01 \x01(\v2 .temporal.api.history.v1.HistoryR\ahistory\x12I\n" +
-	"\rworkflow_type\x18\x02 \x01(\v2$.temporal.api.common.v1.WorkflowTypeR\fworkflowTypeB\x85\x01Z=github.com/roadrunner-server/api-go/v5/temporal/v1;temporalV1\xca\x02\x1aRoadRunner\\Temporal\\DTO\\V1\xe2\x02&RoadRunner\\Temporal\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\rworkflow_type\x18\x02 \x01(\v2$.temporal.api.common.v1.WorkflowTypeR\fworkflowTypeB\x85\x01Z=github.com/roadrunner-server/api-go/v6/temporal/v1;temporalV1\xca\x02\x1aRoadRunner\\Temporal\\DTO\\V1\xe2\x02&RoadRunner\\Temporal\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_temporal_v1_temporal_proto_rawDescOnce sync.Once

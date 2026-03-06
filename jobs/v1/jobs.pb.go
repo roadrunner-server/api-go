@@ -669,7 +669,7 @@ const file_jobs_v1_jobs_proto_rawDesc = "" +
 	"\bpriority\x18\b \x01(\x04R\bpriority\")\n" +
 	"\tPipelines\x12\x1c\n" +
 	"\tpipelines\x18\x01 \x03(\tR\tpipelines\"\a\n" +
-	"\x05EmptyBuZ5github.com/roadrunner-server/api-go/v5/jobs/v1;jobsV1\xca\x02\x16RoadRunner\\Jobs\\DTO\\V1\xe2\x02\"RoadRunner\\Jobs\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\x05EmptyBuZ5github.com/roadrunner-server/api-go/v6/jobs/v1;jobsV1\xca\x02\x16RoadRunner\\Jobs\\DTO\\V1\xe2\x02\"RoadRunner\\Jobs\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_jobs_v1_jobs_proto_rawDescOnce sync.Once

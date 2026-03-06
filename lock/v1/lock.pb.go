@@ -146,7 +146,7 @@ const file_lock_v1_lock_proto_rawDesc = "" +
 	"\x04_ttlB\a\n" +
 	"\x05_wait\"\x1e\n" +
 	"\fLockResponse\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02okBuZ5github.com/roadrunner-server/api-go/v5/lock/v1;lockV1\xca\x02\x16RoadRunner\\Lock\\DTO\\V1\xe2\x02\"RoadRunner\\Lock\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\x02ok\x18\x01 \x01(\bR\x02okBuZ5github.com/roadrunner-server/api-go/v6/lock/v1;lockV1\xca\x02\x16RoadRunner\\Lock\\DTO\\V1\xe2\x02\"RoadRunner\\Lock\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_lock_v1_lock_proto_rawDescOnce sync.Once

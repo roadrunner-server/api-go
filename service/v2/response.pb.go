@@ -173,7 +173,7 @@ const file_service_v2_response_proto_rawDesc = "" +
 	"\x0fServiceStatuses\x125\n" +
 	"\bstatuses\x18\x01 \x03(\v2\x19.service.v2.ProcessStatusR\bstatuses\")\n" +
 	"\vServiceList\x12\x1a\n" +
-	"\bservices\x18\x01 \x03(\tR\bservicesB\x81\x01Z;github.com/roadrunner-server/api-go/v5/service/v2;serviceV2\xca\x02\x19RoadRunner\\Service\\DTO\\V2\xe2\x02%RoadRunner\\Service\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\bservices\x18\x01 \x03(\tR\bservicesB\x81\x01Z;github.com/roadrunner-server/api-go/v6/service/v2;serviceV2\xca\x02\x19RoadRunner\\Service\\DTO\\V2\xe2\x02%RoadRunner\\Service\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_service_v2_response_proto_rawDescOnce sync.Once

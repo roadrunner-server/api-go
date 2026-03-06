@@ -64,7 +64,7 @@ var File_jobs_v2_response_proto protoreflect.FileDescriptor
 const file_jobs_v2_response_proto_rawDesc = "" +
 	"\n" +
 	"\x16jobs/v2/response.proto\x12\ajobs.v2\"\r\n" +
-	"\vJobResponseBuZ5github.com/roadrunner-server/api-go/v5/jobs/v2;jobsV2\xca\x02\x16RoadRunner\\Jobs\\DTO\\V2\xe2\x02\"RoadRunner\\Jobs\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\vJobResponseBuZ5github.com/roadrunner-server/api-go/v6/jobs/v2;jobsV2\xca\x02\x16RoadRunner\\Jobs\\DTO\\V2\xe2\x02\"RoadRunner\\Jobs\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_jobs_v2_response_proto_rawDescOnce sync.Once

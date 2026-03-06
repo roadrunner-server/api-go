@@ -80,7 +80,7 @@ const file_kv_v2_request_proto_rawDesc = "" +
 	"\x13kv/v2/request.proto\x12\x05kv.v2\x1a\x0ekv/v2/kv.proto\"J\n" +
 	"\tKvRequest\x12\x18\n" +
 	"\astorage\x18\x01 \x01(\tR\astorage\x12#\n" +
-	"\x05items\x18\x02 \x03(\v2\r.kv.v2.KvItemR\x05itemsBmZ1github.com/roadrunner-server/api-go/v5/kv/v2;kvV2\xca\x02\x14RoadRunner\\KV\\DTO\\V2\xe2\x02 RoadRunner\\KV\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x05items\x18\x02 \x03(\v2\r.kv.v2.KvItemR\x05itemsBmZ1github.com/roadrunner-server/api-go/v6/kv/v2;kvV2\xca\x02\x14RoadRunner\\KV\\DTO\\V2\xe2\x02 RoadRunner\\KV\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_kv_v2_request_proto_rawDescOnce sync.Once

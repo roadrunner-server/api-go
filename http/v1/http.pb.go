@@ -319,7 +319,7 @@ const file_http_v1_http_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12*\n" +
 	"\x05value\x18\x02 \x01(\v2\x14.http.v1.HeaderValueR\x05value:\x028\x01\"#\n" +
 	"\vHeaderValue\x12\x14\n" +
-	"\x05value\x18\x01 \x03(\fR\x05valueBuZ5github.com/roadrunner-server/api-go/v5/http/v1;httpV1\xca\x02\x16RoadRunner\\HTTP\\DTO\\V1\xe2\x02\"RoadRunner\\HTTP\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\x05value\x18\x01 \x03(\fR\x05valueBuZ5github.com/roadrunner-server/api-go/v6/http/v1;httpV1\xca\x02\x16RoadRunner\\HTTP\\DTO\\V1\xe2\x02\"RoadRunner\\HTTP\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_http_v1_http_proto_rawDescOnce sync.Once

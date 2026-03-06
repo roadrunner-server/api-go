@@ -173,7 +173,7 @@ const file_applogger_v1_applogger_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value\"\n" +
 	"\n" +
-	"\bResponseB\x89\x01Z?github.com/roadrunner-server/api-go/v5/applogger/v1;apploggerV1\xca\x02\x1bRoadRunner\\AppLogger\\DTO\\V1\xe2\x02'RoadRunner\\AppLogger\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\bResponseB\x89\x01Z?github.com/roadrunner-server/api-go/v6/applogger/v1;apploggerV1\xca\x02\x1bRoadRunner\\AppLogger\\DTO\\V1\xe2\x02'RoadRunner\\AppLogger\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_applogger_v1_applogger_proto_rawDescOnce sync.Once

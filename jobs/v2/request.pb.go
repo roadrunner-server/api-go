@@ -179,7 +179,7 @@ const file_jobs_v2_request_proto_rawDesc = "" +
 	"\bpipeline\x18\x01 \x03(\v2%.jobs.v2.DeclareRequest.PipelineEntryR\bpipeline\x1a;\n" +
 	"\rPipelineEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01BuZ5github.com/roadrunner-server/api-go/v5/jobs/v2;jobsV2\xca\x02\x16RoadRunner\\Jobs\\DTO\\V2\xe2\x02\"RoadRunner\\Jobs\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01BuZ5github.com/roadrunner-server/api-go/v6/jobs/v2;jobsV2\xca\x02\x16RoadRunner\\Jobs\\DTO\\V2\xe2\x02\"RoadRunner\\Jobs\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_jobs_v2_request_proto_rawDescOnce sync.Once
