@@ -21,27 +21,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type PushRequest struct {
+type JobsHandlerRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Job           *Job                   `protobuf:"bytes,1,opt,name=job,proto3" json:"job,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PushRequest) Reset() {
-	*x = PushRequest{}
+func (x *JobsHandlerRequest) Reset() {
+	*x = JobsHandlerRequest{}
 	mi := &file_jobs_v2_request_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PushRequest) String() string {
+func (x *JobsHandlerRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PushRequest) ProtoMessage() {}
+func (*JobsHandlerRequest) ProtoMessage() {}
 
-func (x *PushRequest) ProtoReflect() protoreflect.Message {
+func (x *JobsHandlerRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_jobs_v2_request_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,12 +53,12 @@ func (x *PushRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PushRequest.ProtoReflect.Descriptor instead.
-func (*PushRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use JobsHandlerRequest.ProtoReflect.Descriptor instead.
+func (*JobsHandlerRequest) Descriptor() ([]byte, []int) {
 	return file_jobs_v2_request_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *PushRequest) GetJob() *Job {
+func (x *JobsHandlerRequest) GetJob() *Job {
 	if x != nil {
 		return x.Job
 	}
@@ -166,8 +166,8 @@ var File_jobs_v2_request_proto protoreflect.FileDescriptor
 
 const file_jobs_v2_request_proto_rawDesc = "" +
 	"\n" +
-	"\x15jobs/v2/request.proto\x12\ajobs.v2\x1a\x12jobs/v2/jobs.proto\"-\n" +
-	"\vPushRequest\x12\x1e\n" +
+	"\x15jobs/v2/request.proto\x12\ajobs.v2\x1a\x12jobs/v2/jobs.proto\"4\n" +
+	"\x12JobsHandlerRequest\x12\x1e\n" +
 	"\x03job\x18\x01 \x01(\v2\f.jobs.v2.JobR\x03job\"\xcb\x01\n" +
 	"\x10PushBatchRequest\x12 \n" +
 	"\x04jobs\x18\x01 \x03(\v2\f.jobs.v2.JobR\x04jobs\x12@\n" +
@@ -195,16 +195,16 @@ func file_jobs_v2_request_proto_rawDescGZIP() []byte {
 
 var file_jobs_v2_request_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_jobs_v2_request_proto_goTypes = []any{
-	(*PushRequest)(nil),      // 0: jobs.v2.PushRequest
-	(*PushBatchRequest)(nil), // 1: jobs.v2.PushBatchRequest
-	(*DeclareRequest)(nil),   // 2: jobs.v2.DeclareRequest
-	nil,                      // 3: jobs.v2.PushBatchRequest.HeadersEntry
-	nil,                      // 4: jobs.v2.DeclareRequest.PipelineEntry
-	(*Job)(nil),              // 5: jobs.v2.Job
-	(*JobHeaderValue)(nil),   // 6: jobs.v2.JobHeaderValue
+	(*JobsHandlerRequest)(nil), // 0: jobs.v2.JobsHandlerRequest
+	(*PushBatchRequest)(nil),   // 1: jobs.v2.PushBatchRequest
+	(*DeclareRequest)(nil),     // 2: jobs.v2.DeclareRequest
+	nil,                        // 3: jobs.v2.PushBatchRequest.HeadersEntry
+	nil,                        // 4: jobs.v2.DeclareRequest.PipelineEntry
+	(*Job)(nil),                // 5: jobs.v2.Job
+	(*JobHeaderValue)(nil),     // 6: jobs.v2.JobHeaderValue
 }
 var file_jobs_v2_request_proto_depIdxs = []int32{
-	5, // 0: jobs.v2.PushRequest.job:type_name -> jobs.v2.Job
+	5, // 0: jobs.v2.JobsHandlerRequest.job:type_name -> jobs.v2.Job
 	5, // 1: jobs.v2.PushBatchRequest.jobs:type_name -> jobs.v2.Job
 	3, // 2: jobs.v2.PushBatchRequest.headers:type_name -> jobs.v2.PushBatchRequest.HeadersEntry
 	4, // 3: jobs.v2.DeclareRequest.pipeline:type_name -> jobs.v2.DeclareRequest.PipelineEntry

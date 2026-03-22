@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type HttpResponse struct {
+type HttpHandlerResponse struct {
 	state         protoimpl.MessageState      `protogen:"open.v1"`
 	Status        int64                       `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
 	Headers       map[string]*HttpHeaderValue `protobuf:"bytes,2,rep,name=headers,proto3" json:"headers,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -29,20 +29,20 @@ type HttpResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *HttpResponse) Reset() {
-	*x = HttpResponse{}
+func (x *HttpHandlerResponse) Reset() {
+	*x = HttpHandlerResponse{}
 	mi := &file_http_v2_response_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *HttpResponse) String() string {
+func (x *HttpHandlerResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HttpResponse) ProtoMessage() {}
+func (*HttpHandlerResponse) ProtoMessage() {}
 
-func (x *HttpResponse) ProtoReflect() protoreflect.Message {
+func (x *HttpHandlerResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_http_v2_response_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,19 +54,19 @@ func (x *HttpResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HttpResponse.ProtoReflect.Descriptor instead.
-func (*HttpResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use HttpHandlerResponse.ProtoReflect.Descriptor instead.
+func (*HttpHandlerResponse) Descriptor() ([]byte, []int) {
 	return file_http_v2_response_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *HttpResponse) GetStatus() int64 {
+func (x *HttpHandlerResponse) GetStatus() int64 {
 	if x != nil {
 		return x.Status
 	}
 	return 0
 }
 
-func (x *HttpResponse) GetHeaders() map[string]*HttpHeaderValue {
+func (x *HttpHandlerResponse) GetHeaders() map[string]*HttpHeaderValue {
 	if x != nil {
 		return x.Headers
 	}
@@ -77,10 +77,10 @@ var File_http_v2_response_proto protoreflect.FileDescriptor
 
 const file_http_v2_response_proto_rawDesc = "" +
 	"\n" +
-	"\x16http/v2/response.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xba\x01\n" +
-	"\fHttpResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\x03R\x06status\x12<\n" +
-	"\aheaders\x18\x02 \x03(\v2\".http.v2.HttpResponse.HeadersEntryR\aheaders\x1aT\n" +
+	"\x16http/v2/response.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xc8\x01\n" +
+	"\x13HttpHandlerResponse\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\x03R\x06status\x12C\n" +
+	"\aheaders\x18\x02 \x03(\v2).http.v2.HttpHandlerResponse.HeadersEntryR\aheaders\x1aT\n" +
 	"\fHeadersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01BuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
@@ -99,13 +99,13 @@ func file_http_v2_response_proto_rawDescGZIP() []byte {
 
 var file_http_v2_response_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_http_v2_response_proto_goTypes = []any{
-	(*HttpResponse)(nil),    // 0: http.v2.HttpResponse
-	nil,                     // 1: http.v2.HttpResponse.HeadersEntry
-	(*HttpHeaderValue)(nil), // 2: http.v2.HttpHeaderValue
+	(*HttpHandlerResponse)(nil), // 0: http.v2.HttpHandlerResponse
+	nil,                         // 1: http.v2.HttpHandlerResponse.HeadersEntry
+	(*HttpHeaderValue)(nil),     // 2: http.v2.HttpHeaderValue
 }
 var file_http_v2_response_proto_depIdxs = []int32{
-	1, // 0: http.v2.HttpResponse.headers:type_name -> http.v2.HttpResponse.HeadersEntry
-	2, // 1: http.v2.HttpResponse.HeadersEntry.value:type_name -> http.v2.HttpHeaderValue
+	1, // 0: http.v2.HttpHandlerResponse.headers:type_name -> http.v2.HttpHandlerResponse.HeadersEntry
+	2, // 1: http.v2.HttpHandlerResponse.HeadersEntry.value:type_name -> http.v2.HttpHeaderValue
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

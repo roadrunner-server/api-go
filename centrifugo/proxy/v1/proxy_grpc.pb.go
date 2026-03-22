@@ -185,7 +185,7 @@ func (c *centrifugoProxyClient) NotifyChannelState(ctx context.Context, in *Noti
 }
 
 // CentrifugoProxyServer is the server API for CentrifugoProxy service.
-// All implementations should embed UnimplementedCentrifugoProxyServer
+// All implementations must embed UnimplementedCentrifugoProxyServer
 // for forward compatibility.
 type CentrifugoProxyServer interface {
 	// Connect to proxy connection authentication and communicate initial state.
@@ -215,9 +215,10 @@ type CentrifugoProxyServer interface {
 	// NotifyChannelState can be used to receive channel events such as channel "occupied" and "vacated".
 	// This is a feature in a preview state and is only available in Centrifugo PRO.
 	NotifyChannelState(context.Context, *NotifyChannelStateRequest) (*NotifyChannelStateResponse, error)
+	mustEmbedUnimplementedCentrifugoProxyServer()
 }
 
-// UnimplementedCentrifugoProxyServer should be embedded to have
+// UnimplementedCentrifugoProxyServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
@@ -254,7 +255,8 @@ func (UnimplementedCentrifugoProxyServer) NotifyCacheEmpty(context.Context, *Not
 func (UnimplementedCentrifugoProxyServer) NotifyChannelState(context.Context, *NotifyChannelStateRequest) (*NotifyChannelStateResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method NotifyChannelState not implemented")
 }
-func (UnimplementedCentrifugoProxyServer) testEmbeddedByValue() {}
+func (UnimplementedCentrifugoProxyServer) mustEmbedUnimplementedCentrifugoProxyServer() {}
+func (UnimplementedCentrifugoProxyServer) testEmbeddedByValue()                         {}
 
 // UnsafeCentrifugoProxyServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to CentrifugoProxyServer will

@@ -23,26 +23,26 @@ const (
 
 // some endpoints receives nothing
 // all endpoints returns nothing, except error
-type JobResponse struct {
+type JobsHandlerResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *JobResponse) Reset() {
-	*x = JobResponse{}
+func (x *JobsHandlerResponse) Reset() {
+	*x = JobsHandlerResponse{}
 	mi := &file_jobs_v2_response_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *JobResponse) String() string {
+func (x *JobsHandlerResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*JobResponse) ProtoMessage() {}
+func (*JobsHandlerResponse) ProtoMessage() {}
 
-func (x *JobResponse) ProtoReflect() protoreflect.Message {
+func (x *JobsHandlerResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_jobs_v2_response_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,8 +54,8 @@ func (x *JobResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use JobResponse.ProtoReflect.Descriptor instead.
-func (*JobResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use JobsHandlerResponse.ProtoReflect.Descriptor instead.
+func (*JobsHandlerResponse) Descriptor() ([]byte, []int) {
 	return file_jobs_v2_response_proto_rawDescGZIP(), []int{0}
 }
 
@@ -63,8 +63,8 @@ var File_jobs_v2_response_proto protoreflect.FileDescriptor
 
 const file_jobs_v2_response_proto_rawDesc = "" +
 	"\n" +
-	"\x16jobs/v2/response.proto\x12\ajobs.v2\"\r\n" +
-	"\vJobResponseBuZ5github.com/roadrunner-server/api-go/v6/jobs/v2;jobsV2\xca\x02\x16RoadRunner\\Jobs\\DTO\\V2\xe2\x02\"RoadRunner\\Jobs\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x16jobs/v2/response.proto\x12\ajobs.v2\"\x15\n" +
+	"\x13JobsHandlerResponseBuZ5github.com/roadrunner-server/api-go/v6/jobs/v2;jobsV2\xca\x02\x16RoadRunner\\Jobs\\DTO\\V2\xe2\x02\"RoadRunner\\Jobs\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_jobs_v2_response_proto_rawDescOnce sync.Once
@@ -80,7 +80,7 @@ func file_jobs_v2_response_proto_rawDescGZIP() []byte {
 
 var file_jobs_v2_response_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_jobs_v2_response_proto_goTypes = []any{
-	(*JobResponse)(nil), // 0: jobs.v2.JobResponse
+	(*JobsHandlerResponse)(nil), // 0: jobs.v2.JobsHandlerResponse
 }
 var file_jobs_v2_response_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

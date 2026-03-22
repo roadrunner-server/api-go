@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type HttpRequest struct {
+type HttpHandlerRequest struct {
 	state         protoimpl.MessageState      `protogen:"open.v1"`
 	RemoteAddr    string                      `protobuf:"bytes,1,opt,name=remote_addr,json=remoteAddr,proto3" json:"remote_addr,omitempty"`
 	Protocol      string                      `protobuf:"bytes,2,opt,name=protocol,proto3" json:"protocol,omitempty"`
@@ -37,20 +37,20 @@ type HttpRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *HttpRequest) Reset() {
-	*x = HttpRequest{}
+func (x *HttpHandlerRequest) Reset() {
+	*x = HttpHandlerRequest{}
 	mi := &file_http_v2_request_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *HttpRequest) String() string {
+func (x *HttpHandlerRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*HttpRequest) ProtoMessage() {}
+func (*HttpHandlerRequest) ProtoMessage() {}
 
-func (x *HttpRequest) ProtoReflect() protoreflect.Message {
+func (x *HttpHandlerRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_http_v2_request_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -62,75 +62,75 @@ func (x *HttpRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use HttpRequest.ProtoReflect.Descriptor instead.
-func (*HttpRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use HttpHandlerRequest.ProtoReflect.Descriptor instead.
+func (*HttpHandlerRequest) Descriptor() ([]byte, []int) {
 	return file_http_v2_request_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *HttpRequest) GetRemoteAddr() string {
+func (x *HttpHandlerRequest) GetRemoteAddr() string {
 	if x != nil {
 		return x.RemoteAddr
 	}
 	return ""
 }
 
-func (x *HttpRequest) GetProtocol() string {
+func (x *HttpHandlerRequest) GetProtocol() string {
 	if x != nil {
 		return x.Protocol
 	}
 	return ""
 }
 
-func (x *HttpRequest) GetMethod() string {
+func (x *HttpHandlerRequest) GetMethod() string {
 	if x != nil {
 		return x.Method
 	}
 	return ""
 }
 
-func (x *HttpRequest) GetUri() string {
+func (x *HttpHandlerRequest) GetUri() string {
 	if x != nil {
 		return x.Uri
 	}
 	return ""
 }
 
-func (x *HttpRequest) GetHeader() map[string]*HttpHeaderValue {
+func (x *HttpHandlerRequest) GetHeader() map[string]*HttpHeaderValue {
 	if x != nil {
 		return x.Header
 	}
 	return nil
 }
 
-func (x *HttpRequest) GetCookies() map[string]*HttpHeaderValue {
+func (x *HttpHandlerRequest) GetCookies() map[string]*HttpHeaderValue {
 	if x != nil {
 		return x.Cookies
 	}
 	return nil
 }
 
-func (x *HttpRequest) GetRawQuery() string {
+func (x *HttpHandlerRequest) GetRawQuery() string {
 	if x != nil {
 		return x.RawQuery
 	}
 	return ""
 }
 
-func (x *HttpRequest) GetParsed() bool {
+func (x *HttpHandlerRequest) GetParsed() bool {
 	if x != nil {
 		return x.Parsed
 	}
 	return false
 }
 
-func (x *HttpRequest) GetUploads() []byte {
+func (x *HttpHandlerRequest) GetUploads() []byte {
 	if x != nil {
 		return x.Uploads
 	}
 	return nil
 }
 
-func (x *HttpRequest) GetAttributes() map[string]*HttpHeaderValue {
+func (x *HttpHandlerRequest) GetAttributes() map[string]*HttpHeaderValue {
 	if x != nil {
 		return x.Attributes
 	}
@@ -141,21 +141,21 @@ var File_http_v2_request_proto protoreflect.FileDescriptor
 
 const file_http_v2_request_proto_rawDesc = "" +
 	"\n" +
-	"\x15http/v2/request.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\x84\x05\n" +
-	"\vHttpRequest\x12\x1f\n" +
+	"\x15http/v2/request.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xa0\x05\n" +
+	"\x12HttpHandlerRequest\x12\x1f\n" +
 	"\vremote_addr\x18\x01 \x01(\tR\n" +
 	"remoteAddr\x12\x1a\n" +
 	"\bprotocol\x18\x02 \x01(\tR\bprotocol\x12\x16\n" +
 	"\x06method\x18\x03 \x01(\tR\x06method\x12\x10\n" +
-	"\x03uri\x18\x04 \x01(\tR\x03uri\x128\n" +
-	"\x06header\x18\x05 \x03(\v2 .http.v2.HttpRequest.HeaderEntryR\x06header\x12;\n" +
-	"\acookies\x18\x06 \x03(\v2!.http.v2.HttpRequest.CookiesEntryR\acookies\x12\x1b\n" +
+	"\x03uri\x18\x04 \x01(\tR\x03uri\x12?\n" +
+	"\x06header\x18\x05 \x03(\v2'.http.v2.HttpHandlerRequest.HeaderEntryR\x06header\x12B\n" +
+	"\acookies\x18\x06 \x03(\v2(.http.v2.HttpHandlerRequest.CookiesEntryR\acookies\x12\x1b\n" +
 	"\traw_query\x18\a \x01(\tR\brawQuery\x12\x16\n" +
 	"\x06parsed\x18\b \x01(\bR\x06parsed\x12\x18\n" +
-	"\auploads\x18\t \x01(\fR\auploads\x12D\n" +
+	"\auploads\x18\t \x01(\fR\auploads\x12K\n" +
 	"\n" +
 	"attributes\x18\n" +
-	" \x03(\v2$.http.v2.HttpRequest.AttributesEntryR\n" +
+	" \x03(\v2+.http.v2.HttpHandlerRequest.AttributesEntryR\n" +
 	"attributes\x1aS\n" +
 	"\vHeaderEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
@@ -181,19 +181,19 @@ func file_http_v2_request_proto_rawDescGZIP() []byte {
 
 var file_http_v2_request_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_http_v2_request_proto_goTypes = []any{
-	(*HttpRequest)(nil),     // 0: http.v2.HttpRequest
-	nil,                     // 1: http.v2.HttpRequest.HeaderEntry
-	nil,                     // 2: http.v2.HttpRequest.CookiesEntry
-	nil,                     // 3: http.v2.HttpRequest.AttributesEntry
-	(*HttpHeaderValue)(nil), // 4: http.v2.HttpHeaderValue
+	(*HttpHandlerRequest)(nil), // 0: http.v2.HttpHandlerRequest
+	nil,                        // 1: http.v2.HttpHandlerRequest.HeaderEntry
+	nil,                        // 2: http.v2.HttpHandlerRequest.CookiesEntry
+	nil,                        // 3: http.v2.HttpHandlerRequest.AttributesEntry
+	(*HttpHeaderValue)(nil),    // 4: http.v2.HttpHeaderValue
 }
 var file_http_v2_request_proto_depIdxs = []int32{
-	1, // 0: http.v2.HttpRequest.header:type_name -> http.v2.HttpRequest.HeaderEntry
-	2, // 1: http.v2.HttpRequest.cookies:type_name -> http.v2.HttpRequest.CookiesEntry
-	3, // 2: http.v2.HttpRequest.attributes:type_name -> http.v2.HttpRequest.AttributesEntry
-	4, // 3: http.v2.HttpRequest.HeaderEntry.value:type_name -> http.v2.HttpHeaderValue
-	4, // 4: http.v2.HttpRequest.CookiesEntry.value:type_name -> http.v2.HttpHeaderValue
-	4, // 5: http.v2.HttpRequest.AttributesEntry.value:type_name -> http.v2.HttpHeaderValue
+	1, // 0: http.v2.HttpHandlerRequest.header:type_name -> http.v2.HttpHandlerRequest.HeaderEntry
+	2, // 1: http.v2.HttpHandlerRequest.cookies:type_name -> http.v2.HttpHandlerRequest.CookiesEntry
+	3, // 2: http.v2.HttpHandlerRequest.attributes:type_name -> http.v2.HttpHandlerRequest.AttributesEntry
+	4, // 3: http.v2.HttpHandlerRequest.HeaderEntry.value:type_name -> http.v2.HttpHeaderValue
+	4, // 4: http.v2.HttpHandlerRequest.CookiesEntry.value:type_name -> http.v2.HttpHeaderValue
+	4, // 5: http.v2.HttpHandlerRequest.AttributesEntry.value:type_name -> http.v2.HttpHeaderValue
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name

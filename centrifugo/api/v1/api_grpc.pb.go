@@ -432,7 +432,7 @@ func (c *centrifugoApiClient) CancelPush(ctx context.Context, in *CancelPushRequ
 }
 
 // CentrifugoApiServer is the server API for CentrifugoApi service.
-// All implementations should embed UnimplementedCentrifugoApiServer
+// All implementations must embed UnimplementedCentrifugoApiServer
 // for forward compatibility.
 type CentrifugoApiServer interface {
 	Batch(context.Context, *BatchRequest) (*BatchResponse, error)
@@ -468,9 +468,10 @@ type CentrifugoApiServer interface {
 	SendPushNotification(context.Context, *SendPushNotificationRequest) (*SendPushNotificationResponse, error)
 	UpdatePushStatus(context.Context, *UpdatePushStatusRequest) (*UpdatePushStatusResponse, error)
 	CancelPush(context.Context, *CancelPushRequest) (*CancelPushResponse, error)
+	mustEmbedUnimplementedCentrifugoApiServer()
 }
 
-// UnimplementedCentrifugoApiServer should be embedded to have
+// UnimplementedCentrifugoApiServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
@@ -576,7 +577,8 @@ func (UnimplementedCentrifugoApiServer) UpdatePushStatus(context.Context, *Updat
 func (UnimplementedCentrifugoApiServer) CancelPush(context.Context, *CancelPushRequest) (*CancelPushResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CancelPush not implemented")
 }
-func (UnimplementedCentrifugoApiServer) testEmbeddedByValue() {}
+func (UnimplementedCentrifugoApiServer) mustEmbedUnimplementedCentrifugoApiServer() {}
+func (UnimplementedCentrifugoApiServer) testEmbeddedByValue()                       {}
 
 // UnsafeCentrifugoApiServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to CentrifugoApiServer will
