@@ -57,9 +57,9 @@ jobs:
 
       - name: Build check
         run: |
-          - go build ./...
-          - go mod tidy
-          - go get -u all
+          go build ./...
+          go mod tidy
+          go get -u all
 
       - name: Commit update
         env:
