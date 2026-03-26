@@ -24,7 +24,8 @@ const (
 type HttpHandlerResponse struct {
 	state         protoimpl.MessageState      `protogen:"open.v1"`
 	Status        int64                       `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Headers       map[string]*HttpHeaderValue `protobuf:"bytes,2,rep,name=headers,proto3" json:"headers,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Body          []byte                      `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
+	Headers       map[string]*HttpHeaderValue `protobuf:"bytes,3,rep,name=headers,proto3" json:"headers,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -66,6 +67,13 @@ func (x *HttpHandlerResponse) GetStatus() int64 {
 	return 0
 }
 
+func (x *HttpHandlerResponse) GetBody() []byte {
+	if x != nil {
+		return x.Body
+	}
+	return nil
+}
+
 func (x *HttpHandlerResponse) GetHeaders() map[string]*HttpHeaderValue {
 	if x != nil {
 		return x.Headers
@@ -77,10 +85,11 @@ var File_http_v2_response_proto protoreflect.FileDescriptor
 
 const file_http_v2_response_proto_rawDesc = "" +
 	"\n" +
-	"\x16http/v2/response.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xc8\x01\n" +
+	"\x16http/v2/response.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xdc\x01\n" +
 	"\x13HttpHandlerResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\x03R\x06status\x12C\n" +
-	"\aheaders\x18\x02 \x03(\v2).http.v2.HttpHandlerResponse.HeadersEntryR\aheaders\x1aT\n" +
+	"\x06status\x18\x01 \x01(\x03R\x06status\x12\x12\n" +
+	"\x04body\x18\x02 \x01(\fR\x04body\x12C\n" +
+	"\aheaders\x18\x03 \x03(\v2).http.v2.HttpHandlerResponse.HeadersEntryR\aheaders\x1aT\n" +
 	"\fHeadersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01BuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
