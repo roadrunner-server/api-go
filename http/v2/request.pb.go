@@ -23,16 +23,17 @@ const (
 
 type HttpHandlerRequest struct {
 	state         protoimpl.MessageState      `protogen:"open.v1"`
-	RemoteAddr    string                      `protobuf:"bytes,1,opt,name=remote_addr,json=remoteAddr,proto3" json:"remote_addr,omitempty"`
-	Protocol      string                      `protobuf:"bytes,2,opt,name=protocol,proto3" json:"protocol,omitempty"`
-	Method        string                      `protobuf:"bytes,3,opt,name=method,proto3" json:"method,omitempty"`
-	Uri           string                      `protobuf:"bytes,4,opt,name=uri,proto3" json:"uri,omitempty"`
-	Header        map[string]*HttpHeaderValue `protobuf:"bytes,5,rep,name=header,proto3" json:"header,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Cookies       map[string]*HttpHeaderValue `protobuf:"bytes,6,rep,name=cookies,proto3" json:"cookies,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	RawQuery      string                      `protobuf:"bytes,7,opt,name=raw_query,json=rawQuery,proto3" json:"raw_query,omitempty"`
-	Parsed        bool                        `protobuf:"varint,8,opt,name=parsed,proto3" json:"parsed,omitempty"`
-	Uploads       []byte                      `protobuf:"bytes,9,opt,name=uploads,proto3" json:"uploads,omitempty"`
-	Attributes    map[string]*HttpHeaderValue `protobuf:"bytes,10,rep,name=attributes,proto3" json:"attributes,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Id            string                      `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	RemoteAddr    string                      `protobuf:"bytes,2,opt,name=remote_addr,json=remoteAddr,proto3" json:"remote_addr,omitempty"`
+	Protocol      string                      `protobuf:"bytes,3,opt,name=protocol,proto3" json:"protocol,omitempty"`
+	Method        string                      `protobuf:"bytes,4,opt,name=method,proto3" json:"method,omitempty"`
+	Uri           string                      `protobuf:"bytes,5,opt,name=uri,proto3" json:"uri,omitempty"`
+	Header        map[string]*HttpHeaderValue `protobuf:"bytes,6,rep,name=header,proto3" json:"header,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Cookies       map[string]*HttpHeaderValue `protobuf:"bytes,7,rep,name=cookies,proto3" json:"cookies,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	RawQuery      string                      `protobuf:"bytes,8,opt,name=raw_query,json=rawQuery,proto3" json:"raw_query,omitempty"`
+	Parsed        bool                        `protobuf:"varint,9,opt,name=parsed,proto3" json:"parsed,omitempty"`
+	Uploads       []byte                      `protobuf:"bytes,10,opt,name=uploads,proto3" json:"uploads,omitempty"`
+	Attributes    map[string]*HttpHeaderValue `protobuf:"bytes,11,rep,name=attributes,proto3" json:"attributes,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -65,6 +66,13 @@ func (x *HttpHandlerRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use HttpHandlerRequest.ProtoReflect.Descriptor instead.
 func (*HttpHandlerRequest) Descriptor() ([]byte, []int) {
 	return file_http_v2_request_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *HttpHandlerRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 func (x *HttpHandlerRequest) GetRemoteAddr() string {
@@ -229,21 +237,22 @@ var File_http_v2_request_proto protoreflect.FileDescriptor
 
 const file_http_v2_request_proto_rawDesc = "" +
 	"\n" +
-	"\x15http/v2/request.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xa0\x05\n" +
-	"\x12HttpHandlerRequest\x12\x1f\n" +
-	"\vremote_addr\x18\x01 \x01(\tR\n" +
+	"\x15http/v2/request.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xb0\x05\n" +
+	"\x12HttpHandlerRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
+	"\vremote_addr\x18\x02 \x01(\tR\n" +
 	"remoteAddr\x12\x1a\n" +
-	"\bprotocol\x18\x02 \x01(\tR\bprotocol\x12\x16\n" +
-	"\x06method\x18\x03 \x01(\tR\x06method\x12\x10\n" +
-	"\x03uri\x18\x04 \x01(\tR\x03uri\x12?\n" +
-	"\x06header\x18\x05 \x03(\v2'.http.v2.HttpHandlerRequest.HeaderEntryR\x06header\x12B\n" +
-	"\acookies\x18\x06 \x03(\v2(.http.v2.HttpHandlerRequest.CookiesEntryR\acookies\x12\x1b\n" +
-	"\traw_query\x18\a \x01(\tR\brawQuery\x12\x16\n" +
-	"\x06parsed\x18\b \x01(\bR\x06parsed\x12\x18\n" +
-	"\auploads\x18\t \x01(\fR\auploads\x12K\n" +
+	"\bprotocol\x18\x03 \x01(\tR\bprotocol\x12\x16\n" +
+	"\x06method\x18\x04 \x01(\tR\x06method\x12\x10\n" +
+	"\x03uri\x18\x05 \x01(\tR\x03uri\x12?\n" +
+	"\x06header\x18\x06 \x03(\v2'.http.v2.HttpHandlerRequest.HeaderEntryR\x06header\x12B\n" +
+	"\acookies\x18\a \x03(\v2(.http.v2.HttpHandlerRequest.CookiesEntryR\acookies\x12\x1b\n" +
+	"\traw_query\x18\b \x01(\tR\brawQuery\x12\x16\n" +
+	"\x06parsed\x18\t \x01(\bR\x06parsed\x12\x18\n" +
+	"\auploads\x18\n" +
+	" \x01(\fR\auploads\x12K\n" +
 	"\n" +
-	"attributes\x18\n" +
-	" \x03(\v2+.http.v2.HttpHandlerRequest.AttributesEntryR\n" +
+	"attributes\x18\v \x03(\v2+.http.v2.HttpHandlerRequest.AttributesEntryR\n" +
 	"attributes\x1aS\n" +
 	"\vHeaderEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
