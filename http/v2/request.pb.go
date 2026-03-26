@@ -137,6 +137,94 @@ func (x *HttpHandlerRequest) GetAttributes() map[string]*HttpHeaderValue {
 	return nil
 }
 
+type HttpHandlerFetchRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BatchSize     int64                  `protobuf:"varint,1,opt,name=batch_size,json=batchSize,proto3" json:"batch_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HttpHandlerFetchRequest) Reset() {
+	*x = HttpHandlerFetchRequest{}
+	mi := &file_http_v2_request_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HttpHandlerFetchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HttpHandlerFetchRequest) ProtoMessage() {}
+
+func (x *HttpHandlerFetchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v2_request_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HttpHandlerFetchRequest.ProtoReflect.Descriptor instead.
+func (*HttpHandlerFetchRequest) Descriptor() ([]byte, []int) {
+	return file_http_v2_request_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *HttpHandlerFetchRequest) GetBatchSize() int64 {
+	if x != nil {
+		return x.BatchSize
+	}
+	return 0
+}
+
+type HttpHandlerRequests struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Requests      []*HttpHandlerRequest  `protobuf:"bytes,1,rep,name=requests,proto3" json:"requests,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HttpHandlerRequests) Reset() {
+	*x = HttpHandlerRequests{}
+	mi := &file_http_v2_request_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HttpHandlerRequests) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HttpHandlerRequests) ProtoMessage() {}
+
+func (x *HttpHandlerRequests) ProtoReflect() protoreflect.Message {
+	mi := &file_http_v2_request_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HttpHandlerRequests.ProtoReflect.Descriptor instead.
+func (*HttpHandlerRequests) Descriptor() ([]byte, []int) {
+	return file_http_v2_request_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *HttpHandlerRequests) GetRequests() []*HttpHandlerRequest {
+	if x != nil {
+		return x.Requests
+	}
+	return nil
+}
+
 var File_http_v2_request_proto protoreflect.FileDescriptor
 
 const file_http_v2_request_proto_rawDesc = "" +
@@ -165,7 +253,12 @@ const file_http_v2_request_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01\x1aW\n" +
 	"\x0fAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
-	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01BuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01\"8\n" +
+	"\x17HttpHandlerFetchRequest\x12\x1d\n" +
+	"\n" +
+	"batch_size\x18\x01 \x01(\x03R\tbatchSize\"N\n" +
+	"\x13HttpHandlerRequests\x127\n" +
+	"\brequests\x18\x01 \x03(\v2\x1b.http.v2.HttpHandlerRequestR\brequestsBuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_http_v2_request_proto_rawDescOnce sync.Once
@@ -179,26 +272,29 @@ func file_http_v2_request_proto_rawDescGZIP() []byte {
 	return file_http_v2_request_proto_rawDescData
 }
 
-var file_http_v2_request_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_http_v2_request_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_http_v2_request_proto_goTypes = []any{
-	(*HttpHandlerRequest)(nil), // 0: http.v2.HttpHandlerRequest
-	nil,                        // 1: http.v2.HttpHandlerRequest.HeaderEntry
-	nil,                        // 2: http.v2.HttpHandlerRequest.CookiesEntry
-	nil,                        // 3: http.v2.HttpHandlerRequest.AttributesEntry
-	(*HttpHeaderValue)(nil),    // 4: http.v2.HttpHeaderValue
+	(*HttpHandlerRequest)(nil),      // 0: http.v2.HttpHandlerRequest
+	(*HttpHandlerFetchRequest)(nil), // 1: http.v2.HttpHandlerFetchRequest
+	(*HttpHandlerRequests)(nil),     // 2: http.v2.HttpHandlerRequests
+	nil,                             // 3: http.v2.HttpHandlerRequest.HeaderEntry
+	nil,                             // 4: http.v2.HttpHandlerRequest.CookiesEntry
+	nil,                             // 5: http.v2.HttpHandlerRequest.AttributesEntry
+	(*HttpHeaderValue)(nil),         // 6: http.v2.HttpHeaderValue
 }
 var file_http_v2_request_proto_depIdxs = []int32{
-	1, // 0: http.v2.HttpHandlerRequest.header:type_name -> http.v2.HttpHandlerRequest.HeaderEntry
-	2, // 1: http.v2.HttpHandlerRequest.cookies:type_name -> http.v2.HttpHandlerRequest.CookiesEntry
-	3, // 2: http.v2.HttpHandlerRequest.attributes:type_name -> http.v2.HttpHandlerRequest.AttributesEntry
-	4, // 3: http.v2.HttpHandlerRequest.HeaderEntry.value:type_name -> http.v2.HttpHeaderValue
-	4, // 4: http.v2.HttpHandlerRequest.CookiesEntry.value:type_name -> http.v2.HttpHeaderValue
-	4, // 5: http.v2.HttpHandlerRequest.AttributesEntry.value:type_name -> http.v2.HttpHeaderValue
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	3, // 0: http.v2.HttpHandlerRequest.header:type_name -> http.v2.HttpHandlerRequest.HeaderEntry
+	4, // 1: http.v2.HttpHandlerRequest.cookies:type_name -> http.v2.HttpHandlerRequest.CookiesEntry
+	5, // 2: http.v2.HttpHandlerRequest.attributes:type_name -> http.v2.HttpHandlerRequest.AttributesEntry
+	0, // 3: http.v2.HttpHandlerRequests.requests:type_name -> http.v2.HttpHandlerRequest
+	6, // 4: http.v2.HttpHandlerRequest.HeaderEntry.value:type_name -> http.v2.HttpHeaderValue
+	6, // 5: http.v2.HttpHandlerRequest.CookiesEntry.value:type_name -> http.v2.HttpHeaderValue
+	6, // 6: http.v2.HttpHandlerRequest.AttributesEntry.value:type_name -> http.v2.HttpHeaderValue
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_http_v2_request_proto_init() }
@@ -213,7 +309,7 @@ func file_http_v2_request_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_http_v2_request_proto_rawDesc), len(file_http_v2_request_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

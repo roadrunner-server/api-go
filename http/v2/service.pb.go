@@ -9,6 +9,7 @@ package httpV2
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -24,19 +25,31 @@ var File_http_v2_service_proto protoreflect.FileDescriptor
 
 const file_http_v2_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15http/v2/service.proto\x12\ahttp.v2\x1a\x15http/v2/request.proto\x1a\x16http/v2/response.proto2\\\n" +
-	"\x10HttpProxyService\x12H\n" +
-	"\vHttpHandler\x12\x1b.http.v2.HttpHandlerRequest\x1a\x1c.http.v2.HttpHandlerResponseBuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x15http/v2/service.proto\x12\ahttp.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x15http/v2/request.proto\x1a\x16http/v2/response.proto2\xb8\x02\n" +
+	"\x10HttpProxyService\x12C\n" +
+	"\fFetchRequest\x12\x16.google.protobuf.Empty\x1a\x1b.http.v2.HttpHandlerRequest\x12O\n" +
+	"\rFetchRequests\x12 .http.v2.HttpHandlerFetchRequest\x1a\x1c.http.v2.HttpHandlerRequests\x12H\n" +
+	"\vHttpHandler\x12\x1b.http.v2.HttpHandlerRequest\x1a\x1c.http.v2.HttpHandlerResponse\x12D\n" +
+	"\fHttpResponse\x12\x1c.http.v2.HttpHandlerResponse\x1a\x16.google.protobuf.EmptyBuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var file_http_v2_service_proto_goTypes = []any{
-	(*HttpHandlerRequest)(nil),  // 0: http.v2.HttpHandlerRequest
-	(*HttpHandlerResponse)(nil), // 1: http.v2.HttpHandlerResponse
+	(*emptypb.Empty)(nil),           // 0: google.protobuf.Empty
+	(*HttpHandlerFetchRequest)(nil), // 1: http.v2.HttpHandlerFetchRequest
+	(*HttpHandlerRequest)(nil),      // 2: http.v2.HttpHandlerRequest
+	(*HttpHandlerResponse)(nil),     // 3: http.v2.HttpHandlerResponse
+	(*HttpHandlerRequests)(nil),     // 4: http.v2.HttpHandlerRequests
 }
 var file_http_v2_service_proto_depIdxs = []int32{
-	0, // 0: http.v2.HttpProxyService.HttpHandler:input_type -> http.v2.HttpHandlerRequest
-	1, // 1: http.v2.HttpProxyService.HttpHandler:output_type -> http.v2.HttpHandlerResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	0, // 0: http.v2.HttpProxyService.FetchRequest:input_type -> google.protobuf.Empty
+	1, // 1: http.v2.HttpProxyService.FetchRequests:input_type -> http.v2.HttpHandlerFetchRequest
+	2, // 2: http.v2.HttpProxyService.HttpHandler:input_type -> http.v2.HttpHandlerRequest
+	3, // 3: http.v2.HttpProxyService.HttpResponse:input_type -> http.v2.HttpHandlerResponse
+	2, // 4: http.v2.HttpProxyService.FetchRequest:output_type -> http.v2.HttpHandlerRequest
+	4, // 5: http.v2.HttpProxyService.FetchRequests:output_type -> http.v2.HttpHandlerRequests
+	3, // 6: http.v2.HttpProxyService.HttpHandler:output_type -> http.v2.HttpHandlerResponse
+	0, // 7: http.v2.HttpProxyService.HttpResponse:output_type -> google.protobuf.Empty
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
