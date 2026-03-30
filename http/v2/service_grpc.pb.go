@@ -30,9 +30,18 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HttpProxyServiceClient interface {
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	FetchRequest(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HttpHandlerRequest, error)
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	FetchRequests(ctx context.Context, in *HttpHandlerFetchRequest, opts ...grpc.CallOption) (*HttpHandlerRequests, error)
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
 	HttpHandler(ctx context.Context, in *HttpHandlerRequest, opts ...grpc.CallOption) (*HttpHandlerResponse, error)
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	HttpResponse(ctx context.Context, in *HttpHandlerResponse, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -88,9 +97,18 @@ func (c *httpProxyServiceClient) HttpResponse(ctx context.Context, in *HttpHandl
 // All implementations must embed UnimplementedHttpProxyServiceServer
 // for forward compatibility.
 type HttpProxyServiceServer interface {
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	FetchRequest(context.Context, *emptypb.Empty) (*HttpHandlerRequest, error)
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	FetchRequests(context.Context, *HttpHandlerFetchRequest) (*HttpHandlerRequests, error)
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
 	HttpHandler(context.Context, *HttpHandlerRequest) (*HttpHandlerResponse, error)
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	HttpResponse(context.Context, *HttpHandlerResponse) (*emptypb.Empty, error)
 	mustEmbedUnimplementedHttpProxyServiceServer()
 }

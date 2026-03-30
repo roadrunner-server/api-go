@@ -50,9 +50,18 @@ const (
 
 // HttpProxyServiceClient is a client for the http.v2.HttpProxyService service.
 type HttpProxyServiceClient interface {
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	FetchRequest(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.HttpHandlerRequest], error)
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	FetchRequests(context.Context, *connect.Request[v2.HttpHandlerFetchRequest]) (*connect.Response[v2.HttpHandlerRequests], error)
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
 	HttpHandler(context.Context, *connect.Request[v2.HttpHandlerRequest]) (*connect.Response[v2.HttpHandlerResponse], error)
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	HttpResponse(context.Context, *connect.Request[v2.HttpHandlerResponse]) (*connect.Response[emptypb.Empty], error)
 }
 
@@ -124,9 +133,18 @@ func (c *httpProxyServiceClient) HttpResponse(ctx context.Context, req *connect.
 
 // HttpProxyServiceHandler is an implementation of the http.v2.HttpProxyService service.
 type HttpProxyServiceHandler interface {
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	FetchRequest(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.HttpHandlerRequest], error)
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	FetchRequests(context.Context, *connect.Request[v2.HttpHandlerFetchRequest]) (*connect.Response[v2.HttpHandlerRequests], error)
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
 	HttpHandler(context.Context, *connect.Request[v2.HttpHandlerRequest]) (*connect.Response[v2.HttpHandlerResponse], error)
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	// buf:lint:ignore RPC_REQUEST_STANDARD_NAME
+	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	HttpResponse(context.Context, *connect.Request[v2.HttpHandlerResponse]) (*connect.Response[emptypb.Empty], error)
 }
 

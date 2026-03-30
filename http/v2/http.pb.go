@@ -67,7 +67,7 @@ func (x *HttpHeader) GetHeader() map[string]*HttpHeaderValue {
 
 type HttpHeaderValue struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Values        [][]byte               `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty"`
+	Values        []string               `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -102,7 +102,7 @@ func (*HttpHeaderValue) Descriptor() ([]byte, []int) {
 	return file_http_v2_http_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *HttpHeaderValue) GetValues() [][]byte {
+func (x *HttpHeaderValue) GetValues() []string {
 	if x != nil {
 		return x.Values
 	}
@@ -121,7 +121,7 @@ const file_http_v2_http_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01\")\n" +
 	"\x0fHttpHeaderValue\x12\x16\n" +
-	"\x06values\x18\x01 \x03(\fR\x06valuesBuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x06values\x18\x01 \x03(\tR\x06valuesBuZ5github.com/roadrunner-server/api-go/v6/http/v2;httpV2\xca\x02\x16RoadRunner\\HTTP\\DTO\\V2\xe2\x02\"RoadRunner\\HTTP\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_http_v2_http_proto_rawDescOnce sync.Once
