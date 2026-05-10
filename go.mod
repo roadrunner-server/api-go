@@ -3,15 +3,15 @@ module github.com/roadrunner-server/api-go/v6
 go 1.26
 
 require (
-	connectrpc.com/connect v1.19.1
-	go.temporal.io/api v1.62.6
-	google.golang.org/grpc v1.79.3
+	connectrpc.com/connect v1.19.2
+	go.temporal.io/api v1.62.11
+	google.golang.org/grpc v1.81.0
 	google.golang.org/protobuf v1.36.11
 )
 
 require (
-	golang.org/x/net v0.52.0 // indirect
-	golang.org/x/sys v0.42.0 // indirect
-	golang.org/x/text v0.35.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20260330182312-d5a96adf58d8 // indirect
+	golang.org/x/net v0.54.0 // indirect
+	golang.org/x/sys v0.44.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260504160031-60b97b32f348 // indirect
 )

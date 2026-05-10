@@ -9,6 +9,7 @@ import (
 	context "context"
 	errors "errors"
 	v2 "github.com/roadrunner-server/api-go/v6/jobs/v2"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
 	strings "strings"
 )
@@ -21,8 +22,8 @@ import (
 const _ = connect.IsAtLeastVersion1_13_0
 
 const (
-	// JobsProxyServiceName is the fully-qualified name of the JobsProxyService service.
-	JobsProxyServiceName = "jobs.v2.JobsProxyService"
+	// JobsServiceName is the fully-qualified name of the JobsService service.
+	JobsServiceName = "jobs.v2.JobsService"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -33,77 +34,272 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// JobsProxyServiceJobsHandlerProcedure is the fully-qualified name of the JobsProxyService's
-	// JobsHandler RPC.
-	JobsProxyServiceJobsHandlerProcedure = "/jobs.v2.JobsProxyService/JobsHandler"
+	// JobsServicePushProcedure is the fully-qualified name of the JobsService's Push RPC.
+	JobsServicePushProcedure = "/jobs.v2.JobsService/Push"
+	// JobsServicePushBatchProcedure is the fully-qualified name of the JobsService's PushBatch RPC.
+	JobsServicePushBatchProcedure = "/jobs.v2.JobsService/PushBatch"
+	// JobsServicePauseProcedure is the fully-qualified name of the JobsService's Pause RPC.
+	JobsServicePauseProcedure = "/jobs.v2.JobsService/Pause"
+	// JobsServiceResumeProcedure is the fully-qualified name of the JobsService's Resume RPC.
+	JobsServiceResumeProcedure = "/jobs.v2.JobsService/Resume"
+	// JobsServiceListProcedure is the fully-qualified name of the JobsService's List RPC.
+	JobsServiceListProcedure = "/jobs.v2.JobsService/List"
+	// JobsServiceDeclareProcedure is the fully-qualified name of the JobsService's Declare RPC.
+	JobsServiceDeclareProcedure = "/jobs.v2.JobsService/Declare"
+	// JobsServiceDestroyProcedure is the fully-qualified name of the JobsService's Destroy RPC.
+	JobsServiceDestroyProcedure = "/jobs.v2.JobsService/Destroy"
+	// JobsServiceGetStatsProcedure is the fully-qualified name of the JobsService's GetStats RPC.
+	JobsServiceGetStatsProcedure = "/jobs.v2.JobsService/GetStats"
 )
 
-// JobsProxyServiceClient is a client for the jobs.v2.JobsProxyService service.
-type JobsProxyServiceClient interface {
-	JobsHandler(context.Context, *connect.Request[v2.JobsHandlerRequest]) (*connect.Response[v2.JobsHandlerResponse], error)
+// JobsServiceClient is a client for the jobs.v2.JobsService service.
+type JobsServiceClient interface {
+	Push(context.Context, *connect.Request[v2.PushRequest]) (*connect.Response[v2.JobsHandlerResponse], error)
+	PushBatch(context.Context, *connect.Request[v2.PushBatchRequest]) (*connect.Response[v2.JobsHandlerResponse], error)
+	Pause(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.JobsHandlerResponse], error)
+	Resume(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.JobsHandlerResponse], error)
+	List(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.Pipelines], error)
+	Declare(context.Context, *connect.Request[v2.DeclareRequest]) (*connect.Response[v2.JobsHandlerResponse], error)
+	Destroy(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.Pipelines], error)
+	GetStats(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.Stats], error)
 }
 
-// NewJobsProxyServiceClient constructs a client for the jobs.v2.JobsProxyService service. By
-// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
-// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
-// connect.WithGRPC() or connect.WithGRPCWeb() options.
+// NewJobsServiceClient constructs a client for the jobs.v2.JobsService service. By default, it uses
+// the Connect protocol with the binary Protobuf Codec, asks for gzipped responses, and sends
+// uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the connect.WithGRPC() or
+// connect.WithGRPCWeb() options.
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewJobsProxyServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) JobsProxyServiceClient {
+func NewJobsServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) JobsServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
-	jobsProxyServiceMethods := v2.File_jobs_v2_service_proto.Services().ByName("JobsProxyService").Methods()
-	return &jobsProxyServiceClient{
-		jobsHandler: connect.NewClient[v2.JobsHandlerRequest, v2.JobsHandlerResponse](
+	jobsServiceMethods := v2.File_jobs_v2_service_proto.Services().ByName("JobsService").Methods()
+	return &jobsServiceClient{
+		push: connect.NewClient[v2.PushRequest, v2.JobsHandlerResponse](
 			httpClient,
-			baseURL+JobsProxyServiceJobsHandlerProcedure,
-			connect.WithSchema(jobsProxyServiceMethods.ByName("JobsHandler")),
+			baseURL+JobsServicePushProcedure,
+			connect.WithSchema(jobsServiceMethods.ByName("Push")),
+			connect.WithClientOptions(opts...),
+		),
+		pushBatch: connect.NewClient[v2.PushBatchRequest, v2.JobsHandlerResponse](
+			httpClient,
+			baseURL+JobsServicePushBatchProcedure,
+			connect.WithSchema(jobsServiceMethods.ByName("PushBatch")),
+			connect.WithClientOptions(opts...),
+		),
+		pause: connect.NewClient[v2.Pipelines, v2.JobsHandlerResponse](
+			httpClient,
+			baseURL+JobsServicePauseProcedure,
+			connect.WithSchema(jobsServiceMethods.ByName("Pause")),
+			connect.WithClientOptions(opts...),
+		),
+		resume: connect.NewClient[v2.Pipelines, v2.JobsHandlerResponse](
+			httpClient,
+			baseURL+JobsServiceResumeProcedure,
+			connect.WithSchema(jobsServiceMethods.ByName("Resume")),
+			connect.WithClientOptions(opts...),
+		),
+		list: connect.NewClient[emptypb.Empty, v2.Pipelines](
+			httpClient,
+			baseURL+JobsServiceListProcedure,
+			connect.WithSchema(jobsServiceMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
+		declare: connect.NewClient[v2.DeclareRequest, v2.JobsHandlerResponse](
+			httpClient,
+			baseURL+JobsServiceDeclareProcedure,
+			connect.WithSchema(jobsServiceMethods.ByName("Declare")),
+			connect.WithClientOptions(opts...),
+		),
+		destroy: connect.NewClient[v2.Pipelines, v2.Pipelines](
+			httpClient,
+			baseURL+JobsServiceDestroyProcedure,
+			connect.WithSchema(jobsServiceMethods.ByName("Destroy")),
+			connect.WithClientOptions(opts...),
+		),
+		getStats: connect.NewClient[emptypb.Empty, v2.Stats](
+			httpClient,
+			baseURL+JobsServiceGetStatsProcedure,
+			connect.WithSchema(jobsServiceMethods.ByName("GetStats")),
 			connect.WithClientOptions(opts...),
 		),
 	}
 }
 
-// jobsProxyServiceClient implements JobsProxyServiceClient.
-type jobsProxyServiceClient struct {
-	jobsHandler *connect.Client[v2.JobsHandlerRequest, v2.JobsHandlerResponse]
+// jobsServiceClient implements JobsServiceClient.
+type jobsServiceClient struct {
+	push      *connect.Client[v2.PushRequest, v2.JobsHandlerResponse]
+	pushBatch *connect.Client[v2.PushBatchRequest, v2.JobsHandlerResponse]
+	pause     *connect.Client[v2.Pipelines, v2.JobsHandlerResponse]
+	resume    *connect.Client[v2.Pipelines, v2.JobsHandlerResponse]
+	list      *connect.Client[emptypb.Empty, v2.Pipelines]
+	declare   *connect.Client[v2.DeclareRequest, v2.JobsHandlerResponse]
+	destroy   *connect.Client[v2.Pipelines, v2.Pipelines]
+	getStats  *connect.Client[emptypb.Empty, v2.Stats]
 }
 
-// JobsHandler calls jobs.v2.JobsProxyService.JobsHandler.
-func (c *jobsProxyServiceClient) JobsHandler(ctx context.Context, req *connect.Request[v2.JobsHandlerRequest]) (*connect.Response[v2.JobsHandlerResponse], error) {
-	return c.jobsHandler.CallUnary(ctx, req)
+// Push calls jobs.v2.JobsService.Push.
+func (c *jobsServiceClient) Push(ctx context.Context, req *connect.Request[v2.PushRequest]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return c.push.CallUnary(ctx, req)
 }
 
-// JobsProxyServiceHandler is an implementation of the jobs.v2.JobsProxyService service.
-type JobsProxyServiceHandler interface {
-	JobsHandler(context.Context, *connect.Request[v2.JobsHandlerRequest]) (*connect.Response[v2.JobsHandlerResponse], error)
+// PushBatch calls jobs.v2.JobsService.PushBatch.
+func (c *jobsServiceClient) PushBatch(ctx context.Context, req *connect.Request[v2.PushBatchRequest]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return c.pushBatch.CallUnary(ctx, req)
 }
 
-// NewJobsProxyServiceHandler builds an HTTP handler from the service implementation. It returns the
-// path on which to mount the handler and the handler itself.
+// Pause calls jobs.v2.JobsService.Pause.
+func (c *jobsServiceClient) Pause(ctx context.Context, req *connect.Request[v2.Pipelines]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return c.pause.CallUnary(ctx, req)
+}
+
+// Resume calls jobs.v2.JobsService.Resume.
+func (c *jobsServiceClient) Resume(ctx context.Context, req *connect.Request[v2.Pipelines]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return c.resume.CallUnary(ctx, req)
+}
+
+// List calls jobs.v2.JobsService.List.
+func (c *jobsServiceClient) List(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[v2.Pipelines], error) {
+	return c.list.CallUnary(ctx, req)
+}
+
+// Declare calls jobs.v2.JobsService.Declare.
+func (c *jobsServiceClient) Declare(ctx context.Context, req *connect.Request[v2.DeclareRequest]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return c.declare.CallUnary(ctx, req)
+}
+
+// Destroy calls jobs.v2.JobsService.Destroy.
+func (c *jobsServiceClient) Destroy(ctx context.Context, req *connect.Request[v2.Pipelines]) (*connect.Response[v2.Pipelines], error) {
+	return c.destroy.CallUnary(ctx, req)
+}
+
+// GetStats calls jobs.v2.JobsService.GetStats.
+func (c *jobsServiceClient) GetStats(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[v2.Stats], error) {
+	return c.getStats.CallUnary(ctx, req)
+}
+
+// JobsServiceHandler is an implementation of the jobs.v2.JobsService service.
+type JobsServiceHandler interface {
+	Push(context.Context, *connect.Request[v2.PushRequest]) (*connect.Response[v2.JobsHandlerResponse], error)
+	PushBatch(context.Context, *connect.Request[v2.PushBatchRequest]) (*connect.Response[v2.JobsHandlerResponse], error)
+	Pause(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.JobsHandlerResponse], error)
+	Resume(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.JobsHandlerResponse], error)
+	List(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.Pipelines], error)
+	Declare(context.Context, *connect.Request[v2.DeclareRequest]) (*connect.Response[v2.JobsHandlerResponse], error)
+	Destroy(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.Pipelines], error)
+	GetStats(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.Stats], error)
+}
+
+// NewJobsServiceHandler builds an HTTP handler from the service implementation. It returns the path
+// on which to mount the handler and the handler itself.
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewJobsProxyServiceHandler(svc JobsProxyServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
-	jobsProxyServiceMethods := v2.File_jobs_v2_service_proto.Services().ByName("JobsProxyService").Methods()
-	jobsProxyServiceJobsHandlerHandler := connect.NewUnaryHandler(
-		JobsProxyServiceJobsHandlerProcedure,
-		svc.JobsHandler,
-		connect.WithSchema(jobsProxyServiceMethods.ByName("JobsHandler")),
+func NewJobsServiceHandler(svc JobsServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	jobsServiceMethods := v2.File_jobs_v2_service_proto.Services().ByName("JobsService").Methods()
+	jobsServicePushHandler := connect.NewUnaryHandler(
+		JobsServicePushProcedure,
+		svc.Push,
+		connect.WithSchema(jobsServiceMethods.ByName("Push")),
 		connect.WithHandlerOptions(opts...),
 	)
-	return "/jobs.v2.JobsProxyService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	jobsServicePushBatchHandler := connect.NewUnaryHandler(
+		JobsServicePushBatchProcedure,
+		svc.PushBatch,
+		connect.WithSchema(jobsServiceMethods.ByName("PushBatch")),
+		connect.WithHandlerOptions(opts...),
+	)
+	jobsServicePauseHandler := connect.NewUnaryHandler(
+		JobsServicePauseProcedure,
+		svc.Pause,
+		connect.WithSchema(jobsServiceMethods.ByName("Pause")),
+		connect.WithHandlerOptions(opts...),
+	)
+	jobsServiceResumeHandler := connect.NewUnaryHandler(
+		JobsServiceResumeProcedure,
+		svc.Resume,
+		connect.WithSchema(jobsServiceMethods.ByName("Resume")),
+		connect.WithHandlerOptions(opts...),
+	)
+	jobsServiceListHandler := connect.NewUnaryHandler(
+		JobsServiceListProcedure,
+		svc.List,
+		connect.WithSchema(jobsServiceMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
+	jobsServiceDeclareHandler := connect.NewUnaryHandler(
+		JobsServiceDeclareProcedure,
+		svc.Declare,
+		connect.WithSchema(jobsServiceMethods.ByName("Declare")),
+		connect.WithHandlerOptions(opts...),
+	)
+	jobsServiceDestroyHandler := connect.NewUnaryHandler(
+		JobsServiceDestroyProcedure,
+		svc.Destroy,
+		connect.WithSchema(jobsServiceMethods.ByName("Destroy")),
+		connect.WithHandlerOptions(opts...),
+	)
+	jobsServiceGetStatsHandler := connect.NewUnaryHandler(
+		JobsServiceGetStatsProcedure,
+		svc.GetStats,
+		connect.WithSchema(jobsServiceMethods.ByName("GetStats")),
+		connect.WithHandlerOptions(opts...),
+	)
+	return "/jobs.v2.JobsService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case JobsProxyServiceJobsHandlerProcedure:
-			jobsProxyServiceJobsHandlerHandler.ServeHTTP(w, r)
+		case JobsServicePushProcedure:
+			jobsServicePushHandler.ServeHTTP(w, r)
+		case JobsServicePushBatchProcedure:
+			jobsServicePushBatchHandler.ServeHTTP(w, r)
+		case JobsServicePauseProcedure:
+			jobsServicePauseHandler.ServeHTTP(w, r)
+		case JobsServiceResumeProcedure:
+			jobsServiceResumeHandler.ServeHTTP(w, r)
+		case JobsServiceListProcedure:
+			jobsServiceListHandler.ServeHTTP(w, r)
+		case JobsServiceDeclareProcedure:
+			jobsServiceDeclareHandler.ServeHTTP(w, r)
+		case JobsServiceDestroyProcedure:
+			jobsServiceDestroyHandler.ServeHTTP(w, r)
+		case JobsServiceGetStatsProcedure:
+			jobsServiceGetStatsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
 	})
 }
 
-// UnimplementedJobsProxyServiceHandler returns CodeUnimplemented from all methods.
-type UnimplementedJobsProxyServiceHandler struct{}
+// UnimplementedJobsServiceHandler returns CodeUnimplemented from all methods.
+type UnimplementedJobsServiceHandler struct{}
 
-func (UnimplementedJobsProxyServiceHandler) JobsHandler(context.Context, *connect.Request[v2.JobsHandlerRequest]) (*connect.Response[v2.JobsHandlerResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsProxyService.JobsHandler is not implemented"))
+func (UnimplementedJobsServiceHandler) Push(context.Context, *connect.Request[v2.PushRequest]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsService.Push is not implemented"))
+}
+
+func (UnimplementedJobsServiceHandler) PushBatch(context.Context, *connect.Request[v2.PushBatchRequest]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsService.PushBatch is not implemented"))
+}
+
+func (UnimplementedJobsServiceHandler) Pause(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsService.Pause is not implemented"))
+}
+
+func (UnimplementedJobsServiceHandler) Resume(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsService.Resume is not implemented"))
+}
+
+func (UnimplementedJobsServiceHandler) List(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.Pipelines], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsService.List is not implemented"))
+}
+
+func (UnimplementedJobsServiceHandler) Declare(context.Context, *connect.Request[v2.DeclareRequest]) (*connect.Response[v2.JobsHandlerResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsService.Declare is not implemented"))
+}
+
+func (UnimplementedJobsServiceHandler) Destroy(context.Context, *connect.Request[v2.Pipelines]) (*connect.Response[v2.Pipelines], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsService.Destroy is not implemented"))
+}
+
+func (UnimplementedJobsServiceHandler) GetStats(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.Stats], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("jobs.v2.JobsService.GetStats is not implemented"))
 }

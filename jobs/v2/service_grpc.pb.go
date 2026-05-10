@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,101 +20,367 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	JobsProxyService_JobsHandler_FullMethodName = "/jobs.v2.JobsProxyService/JobsHandler"
+	JobsService_Push_FullMethodName      = "/jobs.v2.JobsService/Push"
+	JobsService_PushBatch_FullMethodName = "/jobs.v2.JobsService/PushBatch"
+	JobsService_Pause_FullMethodName     = "/jobs.v2.JobsService/Pause"
+	JobsService_Resume_FullMethodName    = "/jobs.v2.JobsService/Resume"
+	JobsService_List_FullMethodName      = "/jobs.v2.JobsService/List"
+	JobsService_Declare_FullMethodName   = "/jobs.v2.JobsService/Declare"
+	JobsService_Destroy_FullMethodName   = "/jobs.v2.JobsService/Destroy"
+	JobsService_GetStats_FullMethodName  = "/jobs.v2.JobsService/GetStats"
 )
 
-// JobsProxyServiceClient is the client API for JobsProxyService service.
+// JobsServiceClient is the client API for JobsService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type JobsProxyServiceClient interface {
-	JobsHandler(ctx context.Context, in *JobsHandlerRequest, opts ...grpc.CallOption) (*JobsHandlerResponse, error)
+type JobsServiceClient interface {
+	Push(ctx context.Context, in *PushRequest, opts ...grpc.CallOption) (*JobsHandlerResponse, error)
+	PushBatch(ctx context.Context, in *PushBatchRequest, opts ...grpc.CallOption) (*JobsHandlerResponse, error)
+	Pause(ctx context.Context, in *Pipelines, opts ...grpc.CallOption) (*JobsHandlerResponse, error)
+	Resume(ctx context.Context, in *Pipelines, opts ...grpc.CallOption) (*JobsHandlerResponse, error)
+	List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Pipelines, error)
+	Declare(ctx context.Context, in *DeclareRequest, opts ...grpc.CallOption) (*JobsHandlerResponse, error)
+	Destroy(ctx context.Context, in *Pipelines, opts ...grpc.CallOption) (*Pipelines, error)
+	GetStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Stats, error)
 }
 
-type jobsProxyServiceClient struct {
+type jobsServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewJobsProxyServiceClient(cc grpc.ClientConnInterface) JobsProxyServiceClient {
-	return &jobsProxyServiceClient{cc}
+func NewJobsServiceClient(cc grpc.ClientConnInterface) JobsServiceClient {
+	return &jobsServiceClient{cc}
 }
 
-func (c *jobsProxyServiceClient) JobsHandler(ctx context.Context, in *JobsHandlerRequest, opts ...grpc.CallOption) (*JobsHandlerResponse, error) {
+func (c *jobsServiceClient) Push(ctx context.Context, in *PushRequest, opts ...grpc.CallOption) (*JobsHandlerResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(JobsHandlerResponse)
-	err := c.cc.Invoke(ctx, JobsProxyService_JobsHandler_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, JobsService_Push_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// JobsProxyServiceServer is the server API for JobsProxyService service.
-// All implementations must embed UnimplementedJobsProxyServiceServer
-// for forward compatibility.
-type JobsProxyServiceServer interface {
-	JobsHandler(context.Context, *JobsHandlerRequest) (*JobsHandlerResponse, error)
-	mustEmbedUnimplementedJobsProxyServiceServer()
+func (c *jobsServiceClient) PushBatch(ctx context.Context, in *PushBatchRequest, opts ...grpc.CallOption) (*JobsHandlerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JobsHandlerResponse)
+	err := c.cc.Invoke(ctx, JobsService_PushBatch_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-// UnimplementedJobsProxyServiceServer must be embedded to have
+func (c *jobsServiceClient) Pause(ctx context.Context, in *Pipelines, opts ...grpc.CallOption) (*JobsHandlerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JobsHandlerResponse)
+	err := c.cc.Invoke(ctx, JobsService_Pause_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobsServiceClient) Resume(ctx context.Context, in *Pipelines, opts ...grpc.CallOption) (*JobsHandlerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JobsHandlerResponse)
+	err := c.cc.Invoke(ctx, JobsService_Resume_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobsServiceClient) List(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Pipelines, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Pipelines)
+	err := c.cc.Invoke(ctx, JobsService_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobsServiceClient) Declare(ctx context.Context, in *DeclareRequest, opts ...grpc.CallOption) (*JobsHandlerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JobsHandlerResponse)
+	err := c.cc.Invoke(ctx, JobsService_Declare_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobsServiceClient) Destroy(ctx context.Context, in *Pipelines, opts ...grpc.CallOption) (*Pipelines, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Pipelines)
+	err := c.cc.Invoke(ctx, JobsService_Destroy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *jobsServiceClient) GetStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Stats, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Stats)
+	err := c.cc.Invoke(ctx, JobsService_GetStats_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// JobsServiceServer is the server API for JobsService service.
+// All implementations must embed UnimplementedJobsServiceServer
+// for forward compatibility.
+type JobsServiceServer interface {
+	Push(context.Context, *PushRequest) (*JobsHandlerResponse, error)
+	PushBatch(context.Context, *PushBatchRequest) (*JobsHandlerResponse, error)
+	Pause(context.Context, *Pipelines) (*JobsHandlerResponse, error)
+	Resume(context.Context, *Pipelines) (*JobsHandlerResponse, error)
+	List(context.Context, *emptypb.Empty) (*Pipelines, error)
+	Declare(context.Context, *DeclareRequest) (*JobsHandlerResponse, error)
+	Destroy(context.Context, *Pipelines) (*Pipelines, error)
+	GetStats(context.Context, *emptypb.Empty) (*Stats, error)
+	mustEmbedUnimplementedJobsServiceServer()
+}
+
+// UnimplementedJobsServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedJobsProxyServiceServer struct{}
+type UnimplementedJobsServiceServer struct{}
 
-func (UnimplementedJobsProxyServiceServer) JobsHandler(context.Context, *JobsHandlerRequest) (*JobsHandlerResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method JobsHandler not implemented")
+func (UnimplementedJobsServiceServer) Push(context.Context, *PushRequest) (*JobsHandlerResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Push not implemented")
 }
-func (UnimplementedJobsProxyServiceServer) mustEmbedUnimplementedJobsProxyServiceServer() {}
-func (UnimplementedJobsProxyServiceServer) testEmbeddedByValue()                          {}
+func (UnimplementedJobsServiceServer) PushBatch(context.Context, *PushBatchRequest) (*JobsHandlerResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PushBatch not implemented")
+}
+func (UnimplementedJobsServiceServer) Pause(context.Context, *Pipelines) (*JobsHandlerResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Pause not implemented")
+}
+func (UnimplementedJobsServiceServer) Resume(context.Context, *Pipelines) (*JobsHandlerResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Resume not implemented")
+}
+func (UnimplementedJobsServiceServer) List(context.Context, *emptypb.Empty) (*Pipelines, error) {
+	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedJobsServiceServer) Declare(context.Context, *DeclareRequest) (*JobsHandlerResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Declare not implemented")
+}
+func (UnimplementedJobsServiceServer) Destroy(context.Context, *Pipelines) (*Pipelines, error) {
+	return nil, status.Error(codes.Unimplemented, "method Destroy not implemented")
+}
+func (UnimplementedJobsServiceServer) GetStats(context.Context, *emptypb.Empty) (*Stats, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetStats not implemented")
+}
+func (UnimplementedJobsServiceServer) mustEmbedUnimplementedJobsServiceServer() {}
+func (UnimplementedJobsServiceServer) testEmbeddedByValue()                     {}
 
-// UnsafeJobsProxyServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to JobsProxyServiceServer will
+// UnsafeJobsServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to JobsServiceServer will
 // result in compilation errors.
-type UnsafeJobsProxyServiceServer interface {
-	mustEmbedUnimplementedJobsProxyServiceServer()
+type UnsafeJobsServiceServer interface {
+	mustEmbedUnimplementedJobsServiceServer()
 }
 
-func RegisterJobsProxyServiceServer(s grpc.ServiceRegistrar, srv JobsProxyServiceServer) {
-	// If the following call panics, it indicates UnimplementedJobsProxyServiceServer was
+func RegisterJobsServiceServer(s grpc.ServiceRegistrar, srv JobsServiceServer) {
+	// If the following call panics, it indicates UnimplementedJobsServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&JobsProxyService_ServiceDesc, srv)
+	s.RegisterService(&JobsService_ServiceDesc, srv)
 }
 
-func _JobsProxyService_JobsHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(JobsHandlerRequest)
+func _JobsService_Push_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PushRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(JobsProxyServiceServer).JobsHandler(ctx, in)
+		return srv.(JobsServiceServer).Push(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: JobsProxyService_JobsHandler_FullMethodName,
+		FullMethod: JobsService_Push_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JobsProxyServiceServer).JobsHandler(ctx, req.(*JobsHandlerRequest))
+		return srv.(JobsServiceServer).Push(ctx, req.(*PushRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// JobsProxyService_ServiceDesc is the grpc.ServiceDesc for JobsProxyService service.
+func _JobsService_PushBatch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PushBatchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobsServiceServer).PushBatch(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JobsService_PushBatch_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobsServiceServer).PushBatch(ctx, req.(*PushBatchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JobsService_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pipelines)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobsServiceServer).Pause(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JobsService_Pause_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobsServiceServer).Pause(ctx, req.(*Pipelines))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JobsService_Resume_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pipelines)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobsServiceServer).Resume(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JobsService_Resume_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobsServiceServer).Resume(ctx, req.(*Pipelines))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JobsService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobsServiceServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JobsService_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobsServiceServer).List(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JobsService_Declare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeclareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobsServiceServer).Declare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JobsService_Declare_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobsServiceServer).Declare(ctx, req.(*DeclareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JobsService_Destroy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Pipelines)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobsServiceServer).Destroy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JobsService_Destroy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobsServiceServer).Destroy(ctx, req.(*Pipelines))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _JobsService_GetStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(JobsServiceServer).GetStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: JobsService_GetStats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(JobsServiceServer).GetStats(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// JobsService_ServiceDesc is the grpc.ServiceDesc for JobsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var JobsProxyService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "jobs.v2.JobsProxyService",
-	HandlerType: (*JobsProxyServiceServer)(nil),
+var JobsService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "jobs.v2.JobsService",
+	HandlerType: (*JobsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "JobsHandler",
-			Handler:    _JobsProxyService_JobsHandler_Handler,
+			MethodName: "Push",
+			Handler:    _JobsService_Push_Handler,
+		},
+		{
+			MethodName: "PushBatch",
+			Handler:    _JobsService_PushBatch_Handler,
+		},
+		{
+			MethodName: "Pause",
+			Handler:    _JobsService_Pause_Handler,
+		},
+		{
+			MethodName: "Resume",
+			Handler:    _JobsService_Resume_Handler,
+		},
+		{
+			MethodName: "List",
+			Handler:    _JobsService_List_Handler,
+		},
+		{
+			MethodName: "Declare",
+			Handler:    _JobsService_Declare_Handler,
+		},
+		{
+			MethodName: "Destroy",
+			Handler:    _JobsService_Destroy_Handler,
+		},
+		{
+			MethodName: "GetStats",
+			Handler:    _JobsService_GetStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -9,6 +9,7 @@ package jobsV2
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -24,19 +25,45 @@ var File_jobs_v2_service_proto protoreflect.FileDescriptor
 
 const file_jobs_v2_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15jobs/v2/service.proto\x12\ajobs.v2\x1a\x15jobs/v2/request.proto\x1a\x16jobs/v2/response.proto2\\\n" +
-	"\x10JobsProxyService\x12H\n" +
-	"\vJobsHandler\x12\x1b.jobs.v2.JobsHandlerRequest\x1a\x1c.jobs.v2.JobsHandlerResponseBuZ5github.com/roadrunner-server/api-go/v6/jobs/v2;jobsV2\xca\x02\x16RoadRunner\\Jobs\\DTO\\V2\xe2\x02\"RoadRunner\\Jobs\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\x15jobs/v2/service.proto\x12\ajobs.v2\x1a\x1bgoogle/protobuf/empty.proto\x1a\x12jobs/v2/jobs.proto\x1a\x15jobs/v2/request.proto\x1a\x16jobs/v2/response.proto2\xe3\x03\n" +
+	"\vJobsService\x12:\n" +
+	"\x04Push\x12\x14.jobs.v2.PushRequest\x1a\x1c.jobs.v2.JobsHandlerResponse\x12D\n" +
+	"\tPushBatch\x12\x19.jobs.v2.PushBatchRequest\x1a\x1c.jobs.v2.JobsHandlerResponse\x129\n" +
+	"\x05Pause\x12\x12.jobs.v2.Pipelines\x1a\x1c.jobs.v2.JobsHandlerResponse\x12:\n" +
+	"\x06Resume\x12\x12.jobs.v2.Pipelines\x1a\x1c.jobs.v2.JobsHandlerResponse\x122\n" +
+	"\x04List\x12\x16.google.protobuf.Empty\x1a\x12.jobs.v2.Pipelines\x12@\n" +
+	"\aDeclare\x12\x17.jobs.v2.DeclareRequest\x1a\x1c.jobs.v2.JobsHandlerResponse\x121\n" +
+	"\aDestroy\x12\x12.jobs.v2.Pipelines\x1a\x12.jobs.v2.Pipelines\x122\n" +
+	"\bGetStats\x12\x16.google.protobuf.Empty\x1a\x0e.jobs.v2.StatsBuZ5github.com/roadrunner-server/api-go/v6/jobs/v2;jobsV2\xca\x02\x16RoadRunner\\Jobs\\DTO\\V2\xe2\x02\"RoadRunner\\Jobs\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var file_jobs_v2_service_proto_goTypes = []any{
-	(*JobsHandlerRequest)(nil),  // 0: jobs.v2.JobsHandlerRequest
-	(*JobsHandlerResponse)(nil), // 1: jobs.v2.JobsHandlerResponse
+	(*PushRequest)(nil),         // 0: jobs.v2.PushRequest
+	(*PushBatchRequest)(nil),    // 1: jobs.v2.PushBatchRequest
+	(*Pipelines)(nil),           // 2: jobs.v2.Pipelines
+	(*emptypb.Empty)(nil),       // 3: google.protobuf.Empty
+	(*DeclareRequest)(nil),      // 4: jobs.v2.DeclareRequest
+	(*JobsHandlerResponse)(nil), // 5: jobs.v2.JobsHandlerResponse
+	(*Stats)(nil),               // 6: jobs.v2.Stats
 }
 var file_jobs_v2_service_proto_depIdxs = []int32{
-	0, // 0: jobs.v2.JobsProxyService.JobsHandler:input_type -> jobs.v2.JobsHandlerRequest
-	1, // 1: jobs.v2.JobsProxyService.JobsHandler:output_type -> jobs.v2.JobsHandlerResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	0, // 0: jobs.v2.JobsService.Push:input_type -> jobs.v2.PushRequest
+	1, // 1: jobs.v2.JobsService.PushBatch:input_type -> jobs.v2.PushBatchRequest
+	2, // 2: jobs.v2.JobsService.Pause:input_type -> jobs.v2.Pipelines
+	2, // 3: jobs.v2.JobsService.Resume:input_type -> jobs.v2.Pipelines
+	3, // 4: jobs.v2.JobsService.List:input_type -> google.protobuf.Empty
+	4, // 5: jobs.v2.JobsService.Declare:input_type -> jobs.v2.DeclareRequest
+	2, // 6: jobs.v2.JobsService.Destroy:input_type -> jobs.v2.Pipelines
+	3, // 7: jobs.v2.JobsService.GetStats:input_type -> google.protobuf.Empty
+	5, // 8: jobs.v2.JobsService.Push:output_type -> jobs.v2.JobsHandlerResponse
+	5, // 9: jobs.v2.JobsService.PushBatch:output_type -> jobs.v2.JobsHandlerResponse
+	5, // 10: jobs.v2.JobsService.Pause:output_type -> jobs.v2.JobsHandlerResponse
+	5, // 11: jobs.v2.JobsService.Resume:output_type -> jobs.v2.JobsHandlerResponse
+	2, // 12: jobs.v2.JobsService.List:output_type -> jobs.v2.Pipelines
+	5, // 13: jobs.v2.JobsService.Declare:output_type -> jobs.v2.JobsHandlerResponse
+	2, // 14: jobs.v2.JobsService.Destroy:output_type -> jobs.v2.Pipelines
+	6, // 15: jobs.v2.JobsService.GetStats:output_type -> jobs.v2.Stats
+	8, // [8:16] is the sub-list for method output_type
+	0, // [0:8] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -47,6 +74,7 @@ func file_jobs_v2_service_proto_init() {
 	if File_jobs_v2_service_proto != nil {
 		return
 	}
+	file_jobs_v2_jobs_proto_init()
 	file_jobs_v2_request_proto_init()
 	file_jobs_v2_response_proto_init()
 	type x struct{}
