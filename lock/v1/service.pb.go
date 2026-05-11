@@ -24,13 +24,13 @@ var File_lock_v1_service_proto protoreflect.FileDescriptor
 
 const file_lock_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15lock/v1/service.proto\x12\alock.v1\x1a\x12lock/v1/lock.proto2\xe1\x02\n" +
+	"\x15lock/v1/service.proto\x12\alock.v1\x1a\x12lock/v1/lock.proto2\xe6\x02\n" +
 	"\vLockService\x123\n" +
 	"\x04Lock\x12\x14.lock.v1.LockRequest\x1a\x15.lock.v1.LockResponse\x127\n" +
 	"\bLockRead\x12\x14.lock.v1.LockRequest\x1a\x15.lock.v1.LockResponse\x126\n" +
 	"\aRelease\x12\x14.lock.v1.LockRequest\x1a\x15.lock.v1.LockResponse\x12;\n" +
-	"\fForceRelease\x12\x14.lock.v1.LockRequest\x1a\x15.lock.v1.LockResponse\x125\n" +
-	"\x06Exists\x12\x14.lock.v1.LockRequest\x1a\x15.lock.v1.LockResponse\x128\n" +
+	"\fForceRelease\x12\x14.lock.v1.LockRequest\x1a\x15.lock.v1.LockResponse\x12:\n" +
+	"\x06Exists\x12\x14.lock.v1.LockRequest\x1a\x15.lock.v1.LockResponse\"\x03\x90\x02\x01\x128\n" +
 	"\tUpdateTTL\x12\x14.lock.v1.LockRequest\x1a\x15.lock.v1.LockResponseBuZ5github.com/roadrunner-server/api-go/v6/lock/v1;lockV1\xca\x02\x16RoadRunner\\Lock\\DTO\\V1\xe2\x02\"RoadRunner\\Lock\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var file_lock_v1_service_proto_goTypes = []any{

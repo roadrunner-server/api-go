@@ -97,6 +97,7 @@ func NewLockServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			httpClient,
 			baseURL+LockServiceExistsProcedure,
 			connect.WithSchema(lockServiceMethods.ByName("Exists")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		updateTTL: connect.NewClient[v1.LockRequest, v1.LockResponse](
@@ -193,6 +194,7 @@ func NewLockServiceHandler(svc LockServiceHandler, opts ...connect.HandlerOption
 		LockServiceExistsProcedure,
 		svc.Exists,
 		connect.WithSchema(lockServiceMethods.ByName("Exists")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	lockServiceUpdateTTLHandler := connect.NewUnaryHandler(
