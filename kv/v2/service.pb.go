@@ -24,13 +24,13 @@ var File_kv_v2_service_proto protoreflect.FileDescriptor
 
 const file_kv_v2_service_proto_rawDesc = "" +
 	"\n" +
-	"\x13kv/v2/service.proto\x12\x05kv.v2\x1a\x13kv/v2/request.proto\x1a\x14kv/v2/response.proto2\xc9\x02\n" +
-	"\tKvService\x12*\n" +
-	"\x03Has\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\x12*\n" +
-	"\x03Set\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\x12+\n" +
-	"\x04MGet\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\x12.\n" +
-	"\aMExpire\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\x12*\n" +
-	"\x03TTL\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\x12-\n" +
+	"\x13kv/v2/service.proto\x12\x05kv.v2\x1a\x13kv/v2/request.proto\x1a\x14kv/v2/response.proto2\xd8\x02\n" +
+	"\tKvService\x12/\n" +
+	"\x03Has\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\"\x03\x90\x02\x01\x12*\n" +
+	"\x03Set\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\x120\n" +
+	"\x04MGet\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\"\x03\x90\x02\x01\x12.\n" +
+	"\aMExpire\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\x12/\n" +
+	"\x03TTL\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\"\x03\x90\x02\x01\x12-\n" +
 	"\x06Delete\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponse\x12,\n" +
 	"\x05Clear\x12\x10.kv.v2.KvRequest\x1a\x11.kv.v2.KvResponseBmZ1github.com/roadrunner-server/api-go/v6/kv/v2;kvV2\xca\x02\x14RoadRunner\\KV\\DTO\\V2\xe2\x02 RoadRunner\\KV\\DTO\\V2\\GPBMetadatab\x06proto3"
 

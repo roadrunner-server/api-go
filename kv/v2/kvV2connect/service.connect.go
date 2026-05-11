@@ -75,6 +75,7 @@ func NewKvServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...c
 			httpClient,
 			baseURL+KvServiceHasProcedure,
 			connect.WithSchema(kvServiceMethods.ByName("Has")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		set: connect.NewClient[v2.KvRequest, v2.KvResponse](
@@ -87,6 +88,7 @@ func NewKvServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...c
 			httpClient,
 			baseURL+KvServiceMGetProcedure,
 			connect.WithSchema(kvServiceMethods.ByName("MGet")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		mExpire: connect.NewClient[v2.KvRequest, v2.KvResponse](
@@ -99,6 +101,7 @@ func NewKvServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...c
 			httpClient,
 			baseURL+KvServiceTTLProcedure,
 			connect.WithSchema(kvServiceMethods.ByName("TTL")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		delete: connect.NewClient[v2.KvRequest, v2.KvResponse](
@@ -184,6 +187,7 @@ func NewKvServiceHandler(svc KvServiceHandler, opts ...connect.HandlerOption) (s
 		KvServiceHasProcedure,
 		svc.Has,
 		connect.WithSchema(kvServiceMethods.ByName("Has")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	kvServiceSetHandler := connect.NewUnaryHandler(
@@ -196,6 +200,7 @@ func NewKvServiceHandler(svc KvServiceHandler, opts ...connect.HandlerOption) (s
 		KvServiceMGetProcedure,
 		svc.MGet,
 		connect.WithSchema(kvServiceMethods.ByName("MGet")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	kvServiceMExpireHandler := connect.NewUnaryHandler(
@@ -208,6 +213,7 @@ func NewKvServiceHandler(svc KvServiceHandler, opts ...connect.HandlerOption) (s
 		KvServiceTTLProcedure,
 		svc.TTL,
 		connect.WithSchema(kvServiceMethods.ByName("TTL")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	kvServiceDeleteHandler := connect.NewUnaryHandler(
