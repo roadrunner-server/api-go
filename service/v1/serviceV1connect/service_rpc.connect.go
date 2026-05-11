@@ -95,18 +95,21 @@ func NewServiceManagerClient(httpClient connect.HTTPClient, baseURL string, opts
 			httpClient,
 			baseURL+ServiceManagerGetStatusProcedure,
 			connect.WithSchema(serviceManagerMethods.ByName("GetStatus")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		getStatuses: connect.NewClient[v1.Service, v1.Statuses](
 			httpClient,
 			baseURL+ServiceManagerGetStatusesProcedure,
 			connect.WithSchema(serviceManagerMethods.ByName("GetStatuses")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 		listServices: connect.NewClient[v1.Service, v1.List](
 			httpClient,
 			baseURL+ServiceManagerListServicesProcedure,
 			connect.WithSchema(serviceManagerMethods.ByName("ListServices")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -191,18 +194,21 @@ func NewServiceManagerHandler(svc ServiceManagerHandler, opts ...connect.Handler
 		ServiceManagerGetStatusProcedure,
 		svc.GetStatus,
 		connect.WithSchema(serviceManagerMethods.ByName("GetStatus")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	serviceManagerGetStatusesHandler := connect.NewUnaryHandler(
 		ServiceManagerGetStatusesProcedure,
 		svc.GetStatuses,
 		connect.WithSchema(serviceManagerMethods.ByName("GetStatuses")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	serviceManagerListServicesHandler := connect.NewUnaryHandler(
 		ServiceManagerListServicesProcedure,
 		svc.ListServices,
 		connect.WithSchema(serviceManagerMethods.ByName("ListServices")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/service.v1.ServiceManager/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

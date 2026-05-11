@@ -25,14 +25,14 @@ var File_service_v1_service_rpc_proto protoreflect.FileDescriptor
 const file_service_v1_service_rpc_proto_rawDesc = "" +
 	"\n" +
 	"\x1cservice/v1/service_rpc.proto\x12\n" +
-	"service.v1\x1a\x18service/v1/service.proto2\xe0\x02\n" +
+	"service.v1\x1a\x18service/v1/service.proto2\xef\x02\n" +
 	"\x0eServiceManager\x129\n" +
 	"\rCreateService\x12\x12.service.v1.Create\x1a\x14.service.v1.Response\x126\n" +
 	"\tTerminate\x12\x13.service.v1.Service\x1a\x14.service.v1.Response\x124\n" +
-	"\aRestart\x12\x13.service.v1.Service\x1a\x14.service.v1.Response\x124\n" +
-	"\tGetStatus\x12\x13.service.v1.Service\x1a\x12.service.v1.Status\x128\n" +
-	"\vGetStatuses\x12\x13.service.v1.Service\x1a\x14.service.v1.Statuses\x125\n" +
-	"\fListServices\x12\x13.service.v1.Service\x1a\x10.service.v1.ListB\x81\x01Z;github.com/roadrunner-server/api-go/v6/service/v1;serviceV1\xca\x02\x19RoadRunner\\Service\\DTO\\V1\xe2\x02%RoadRunner\\Service\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\aRestart\x12\x13.service.v1.Service\x1a\x14.service.v1.Response\x129\n" +
+	"\tGetStatus\x12\x13.service.v1.Service\x1a\x12.service.v1.Status\"\x03\x90\x02\x01\x12=\n" +
+	"\vGetStatuses\x12\x13.service.v1.Service\x1a\x14.service.v1.Statuses\"\x03\x90\x02\x01\x12:\n" +
+	"\fListServices\x12\x13.service.v1.Service\x1a\x10.service.v1.List\"\x03\x90\x02\x01B\x81\x01Z;github.com/roadrunner-server/api-go/v6/service/v1;serviceV1\xca\x02\x19RoadRunner\\Service\\DTO\\V1\xe2\x02%RoadRunner\\Service\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var file_service_v1_service_rpc_proto_goTypes = []any{
 	(*Create)(nil),   // 0: service.v1.Create
