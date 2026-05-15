@@ -22,8 +22,6 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	HttpProxyService_FetchRequest_FullMethodName  = "/http.v2.HttpProxyService/FetchRequest"
 	HttpProxyService_FetchRequests_FullMethodName = "/http.v2.HttpProxyService/FetchRequests"
-	HttpProxyService_HttpHandler_FullMethodName   = "/http.v2.HttpProxyService/HttpHandler"
-	HttpProxyService_HttpResponse_FullMethodName  = "/http.v2.HttpProxyService/HttpResponse"
 )
 
 // HttpProxyServiceClient is the client API for HttpProxyService service.
@@ -32,8 +30,6 @@ const (
 type HttpProxyServiceClient interface {
 	FetchRequest(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HttpHandlerRequest, error)
 	FetchRequests(ctx context.Context, in *HttpHandlerFetchRequest, opts ...grpc.CallOption) (*HttpHandlerRequests, error)
-	HttpHandler(ctx context.Context, in *HttpHandlerRequest, opts ...grpc.CallOption) (*HttpHandlerResponse, error)
-	HttpResponse(ctx context.Context, in *HttpHandlerResponse, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type httpProxyServiceClient struct {
@@ -64,34 +60,12 @@ func (c *httpProxyServiceClient) FetchRequests(ctx context.Context, in *HttpHand
 	return out, nil
 }
 
-func (c *httpProxyServiceClient) HttpHandler(ctx context.Context, in *HttpHandlerRequest, opts ...grpc.CallOption) (*HttpHandlerResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HttpHandlerResponse)
-	err := c.cc.Invoke(ctx, HttpProxyService_HttpHandler_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *httpProxyServiceClient) HttpResponse(ctx context.Context, in *HttpHandlerResponse, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, HttpProxyService_HttpResponse_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // HttpProxyServiceServer is the server API for HttpProxyService service.
 // All implementations must embed UnimplementedHttpProxyServiceServer
 // for forward compatibility.
 type HttpProxyServiceServer interface {
 	FetchRequest(context.Context, *emptypb.Empty) (*HttpHandlerRequest, error)
 	FetchRequests(context.Context, *HttpHandlerFetchRequest) (*HttpHandlerRequests, error)
-	HttpHandler(context.Context, *HttpHandlerRequest) (*HttpHandlerResponse, error)
-	HttpResponse(context.Context, *HttpHandlerResponse) (*emptypb.Empty, error)
 	mustEmbedUnimplementedHttpProxyServiceServer()
 }
 
@@ -107,12 +81,6 @@ func (UnimplementedHttpProxyServiceServer) FetchRequest(context.Context, *emptyp
 }
 func (UnimplementedHttpProxyServiceServer) FetchRequests(context.Context, *HttpHandlerFetchRequest) (*HttpHandlerRequests, error) {
 	return nil, status.Error(codes.Unimplemented, "method FetchRequests not implemented")
-}
-func (UnimplementedHttpProxyServiceServer) HttpHandler(context.Context, *HttpHandlerRequest) (*HttpHandlerResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method HttpHandler not implemented")
-}
-func (UnimplementedHttpProxyServiceServer) HttpResponse(context.Context, *HttpHandlerResponse) (*emptypb.Empty, error) {
-	return nil, status.Error(codes.Unimplemented, "method HttpResponse not implemented")
 }
 func (UnimplementedHttpProxyServiceServer) mustEmbedUnimplementedHttpProxyServiceServer() {}
 func (UnimplementedHttpProxyServiceServer) testEmbeddedByValue()                          {}
@@ -171,42 +139,6 @@ func _HttpProxyService_FetchRequests_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HttpProxyService_HttpHandler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HttpHandlerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HttpProxyServiceServer).HttpHandler(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HttpProxyService_HttpHandler_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HttpProxyServiceServer).HttpHandler(ctx, req.(*HttpHandlerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _HttpProxyService_HttpResponse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HttpHandlerResponse)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HttpProxyServiceServer).HttpResponse(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HttpProxyService_HttpResponse_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HttpProxyServiceServer).HttpResponse(ctx, req.(*HttpHandlerResponse))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // HttpProxyService_ServiceDesc is the grpc.ServiceDesc for HttpProxyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -221,14 +153,6 @@ var HttpProxyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FetchRequests",
 			Handler:    _HttpProxyService_FetchRequests_Handler,
-		},
-		{
-			MethodName: "HttpHandler",
-			Handler:    _HttpProxyService_HttpHandler_Handler,
-		},
-		{
-			MethodName: "HttpResponse",
-			Handler:    _HttpProxyService_HttpResponse_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

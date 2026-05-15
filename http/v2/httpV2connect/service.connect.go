@@ -40,20 +40,12 @@ const (
 	// HttpProxyServiceFetchRequestsProcedure is the fully-qualified name of the HttpProxyService's
 	// FetchRequests RPC.
 	HttpProxyServiceFetchRequestsProcedure = "/http.v2.HttpProxyService/FetchRequests"
-	// HttpProxyServiceHttpHandlerProcedure is the fully-qualified name of the HttpProxyService's
-	// HttpHandler RPC.
-	HttpProxyServiceHttpHandlerProcedure = "/http.v2.HttpProxyService/HttpHandler"
-	// HttpProxyServiceHttpResponseProcedure is the fully-qualified name of the HttpProxyService's
-	// HttpResponse RPC.
-	HttpProxyServiceHttpResponseProcedure = "/http.v2.HttpProxyService/HttpResponse"
 )
 
 // HttpProxyServiceClient is a client for the http.v2.HttpProxyService service.
 type HttpProxyServiceClient interface {
 	FetchRequest(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.HttpHandlerRequest], error)
 	FetchRequests(context.Context, *connect.Request[v2.HttpHandlerFetchRequest]) (*connect.Response[v2.HttpHandlerRequests], error)
-	HttpHandler(context.Context, *connect.Request[v2.HttpHandlerRequest]) (*connect.Response[v2.HttpHandlerResponse], error)
-	HttpResponse(context.Context, *connect.Request[v2.HttpHandlerResponse]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewHttpProxyServiceClient constructs a client for the http.v2.HttpProxyService service. By
@@ -79,18 +71,6 @@ func NewHttpProxyServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(httpProxyServiceMethods.ByName("FetchRequests")),
 			connect.WithClientOptions(opts...),
 		),
-		httpHandler: connect.NewClient[v2.HttpHandlerRequest, v2.HttpHandlerResponse](
-			httpClient,
-			baseURL+HttpProxyServiceHttpHandlerProcedure,
-			connect.WithSchema(httpProxyServiceMethods.ByName("HttpHandler")),
-			connect.WithClientOptions(opts...),
-		),
-		httpResponse: connect.NewClient[v2.HttpHandlerResponse, emptypb.Empty](
-			httpClient,
-			baseURL+HttpProxyServiceHttpResponseProcedure,
-			connect.WithSchema(httpProxyServiceMethods.ByName("HttpResponse")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
@@ -98,8 +78,6 @@ func NewHttpProxyServiceClient(httpClient connect.HTTPClient, baseURL string, op
 type httpProxyServiceClient struct {
 	fetchRequest  *connect.Client[emptypb.Empty, v2.HttpHandlerRequest]
 	fetchRequests *connect.Client[v2.HttpHandlerFetchRequest, v2.HttpHandlerRequests]
-	httpHandler   *connect.Client[v2.HttpHandlerRequest, v2.HttpHandlerResponse]
-	httpResponse  *connect.Client[v2.HttpHandlerResponse, emptypb.Empty]
 }
 
 // FetchRequest calls http.v2.HttpProxyService.FetchRequest.
@@ -112,22 +90,10 @@ func (c *httpProxyServiceClient) FetchRequests(ctx context.Context, req *connect
 	return c.fetchRequests.CallUnary(ctx, req)
 }
 
-// HttpHandler calls http.v2.HttpProxyService.HttpHandler.
-func (c *httpProxyServiceClient) HttpHandler(ctx context.Context, req *connect.Request[v2.HttpHandlerRequest]) (*connect.Response[v2.HttpHandlerResponse], error) {
-	return c.httpHandler.CallUnary(ctx, req)
-}
-
-// HttpResponse calls http.v2.HttpProxyService.HttpResponse.
-func (c *httpProxyServiceClient) HttpResponse(ctx context.Context, req *connect.Request[v2.HttpHandlerResponse]) (*connect.Response[emptypb.Empty], error) {
-	return c.httpResponse.CallUnary(ctx, req)
-}
-
 // HttpProxyServiceHandler is an implementation of the http.v2.HttpProxyService service.
 type HttpProxyServiceHandler interface {
 	FetchRequest(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[v2.HttpHandlerRequest], error)
 	FetchRequests(context.Context, *connect.Request[v2.HttpHandlerFetchRequest]) (*connect.Response[v2.HttpHandlerRequests], error)
-	HttpHandler(context.Context, *connect.Request[v2.HttpHandlerRequest]) (*connect.Response[v2.HttpHandlerResponse], error)
-	HttpResponse(context.Context, *connect.Request[v2.HttpHandlerResponse]) (*connect.Response[emptypb.Empty], error)
 }
 
 // NewHttpProxyServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -149,28 +115,12 @@ func NewHttpProxyServiceHandler(svc HttpProxyServiceHandler, opts ...connect.Han
 		connect.WithSchema(httpProxyServiceMethods.ByName("FetchRequests")),
 		connect.WithHandlerOptions(opts...),
 	)
-	httpProxyServiceHttpHandlerHandler := connect.NewUnaryHandler(
-		HttpProxyServiceHttpHandlerProcedure,
-		svc.HttpHandler,
-		connect.WithSchema(httpProxyServiceMethods.ByName("HttpHandler")),
-		connect.WithHandlerOptions(opts...),
-	)
-	httpProxyServiceHttpResponseHandler := connect.NewUnaryHandler(
-		HttpProxyServiceHttpResponseProcedure,
-		svc.HttpResponse,
-		connect.WithSchema(httpProxyServiceMethods.ByName("HttpResponse")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/http.v2.HttpProxyService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case HttpProxyServiceFetchRequestProcedure:
 			httpProxyServiceFetchRequestHandler.ServeHTTP(w, r)
 		case HttpProxyServiceFetchRequestsProcedure:
 			httpProxyServiceFetchRequestsHandler.ServeHTTP(w, r)
-		case HttpProxyServiceHttpHandlerProcedure:
-			httpProxyServiceHttpHandlerHandler.ServeHTTP(w, r)
-		case HttpProxyServiceHttpResponseProcedure:
-			httpProxyServiceHttpResponseHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -186,12 +136,4 @@ func (UnimplementedHttpProxyServiceHandler) FetchRequest(context.Context, *conne
 
 func (UnimplementedHttpProxyServiceHandler) FetchRequests(context.Context, *connect.Request[v2.HttpHandlerFetchRequest]) (*connect.Response[v2.HttpHandlerRequests], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("http.v2.HttpProxyService.FetchRequests is not implemented"))
-}
-
-func (UnimplementedHttpProxyServiceHandler) HttpHandler(context.Context, *connect.Request[v2.HttpHandlerRequest]) (*connect.Response[v2.HttpHandlerResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("http.v2.HttpProxyService.HttpHandler is not implemented"))
-}
-
-func (UnimplementedHttpProxyServiceHandler) HttpResponse(context.Context, *connect.Request[v2.HttpHandlerResponse]) (*connect.Response[emptypb.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("http.v2.HttpProxyService.HttpResponse is not implemented"))
 }
