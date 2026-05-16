@@ -20,8 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	HttpProxyService_FetchRequest_FullMethodName  = "/http.v2.HttpProxyService/FetchRequest"
-	HttpProxyService_FetchRequests_FullMethodName = "/http.v2.HttpProxyService/FetchRequests"
+	HttpProxyService_FetchRequest_FullMethodName   = "/http.v2.HttpProxyService/FetchRequest"
+	HttpProxyService_StreamRequest_FullMethodName  = "/http.v2.HttpProxyService/StreamRequest"
+	HttpProxyService_FetchRequests_FullMethodName  = "/http.v2.HttpProxyService/FetchRequests"
+	HttpProxyService_SendResponse_FullMethodName   = "/http.v2.HttpProxyService/SendResponse"
+	HttpProxyService_StreamResponse_FullMethodName = "/http.v2.HttpProxyService/StreamResponse"
 )
 
 // HttpProxyServiceClient is the client API for HttpProxyService service.
@@ -29,7 +32,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HttpProxyServiceClient interface {
 	FetchRequest(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HttpHandlerRequest, error)
+	StreamRequest(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HttpHandlerRequest], error)
 	FetchRequests(ctx context.Context, in *HttpHandlerFetchRequest, opts ...grpc.CallOption) (*HttpHandlerRequests, error)
+	SendResponse(ctx context.Context, in *HttpHandlerResponse, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	StreamResponse(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[HttpHandlerResponse, emptypb.Empty], error)
 }
 
 type httpProxyServiceClient struct {
@@ -50,6 +56,25 @@ func (c *httpProxyServiceClient) FetchRequest(ctx context.Context, in *emptypb.E
 	return out, nil
 }
 
+func (c *httpProxyServiceClient) StreamRequest(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[HttpHandlerRequest], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &HttpProxyService_ServiceDesc.Streams[0], HttpProxyService_StreamRequest_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[emptypb.Empty, HttpHandlerRequest]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type HttpProxyService_StreamRequestClient = grpc.ServerStreamingClient[HttpHandlerRequest]
+
 func (c *httpProxyServiceClient) FetchRequests(ctx context.Context, in *HttpHandlerFetchRequest, opts ...grpc.CallOption) (*HttpHandlerRequests, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(HttpHandlerRequests)
@@ -60,12 +85,38 @@ func (c *httpProxyServiceClient) FetchRequests(ctx context.Context, in *HttpHand
 	return out, nil
 }
 
+func (c *httpProxyServiceClient) SendResponse(ctx context.Context, in *HttpHandlerResponse, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, HttpProxyService_SendResponse_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *httpProxyServiceClient) StreamResponse(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[HttpHandlerResponse, emptypb.Empty], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &HttpProxyService_ServiceDesc.Streams[1], HttpProxyService_StreamResponse_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[HttpHandlerResponse, emptypb.Empty]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type HttpProxyService_StreamResponseClient = grpc.ClientStreamingClient[HttpHandlerResponse, emptypb.Empty]
+
 // HttpProxyServiceServer is the server API for HttpProxyService service.
 // All implementations must embed UnimplementedHttpProxyServiceServer
 // for forward compatibility.
 type HttpProxyServiceServer interface {
 	FetchRequest(context.Context, *emptypb.Empty) (*HttpHandlerRequest, error)
+	StreamRequest(*emptypb.Empty, grpc.ServerStreamingServer[HttpHandlerRequest]) error
 	FetchRequests(context.Context, *HttpHandlerFetchRequest) (*HttpHandlerRequests, error)
+	SendResponse(context.Context, *HttpHandlerResponse) (*emptypb.Empty, error)
+	StreamResponse(grpc.ClientStreamingServer[HttpHandlerResponse, emptypb.Empty]) error
 	mustEmbedUnimplementedHttpProxyServiceServer()
 }
 
@@ -79,8 +130,17 @@ type UnimplementedHttpProxyServiceServer struct{}
 func (UnimplementedHttpProxyServiceServer) FetchRequest(context.Context, *emptypb.Empty) (*HttpHandlerRequest, error) {
 	return nil, status.Error(codes.Unimplemented, "method FetchRequest not implemented")
 }
+func (UnimplementedHttpProxyServiceServer) StreamRequest(*emptypb.Empty, grpc.ServerStreamingServer[HttpHandlerRequest]) error {
+	return status.Error(codes.Unimplemented, "method StreamRequest not implemented")
+}
 func (UnimplementedHttpProxyServiceServer) FetchRequests(context.Context, *HttpHandlerFetchRequest) (*HttpHandlerRequests, error) {
 	return nil, status.Error(codes.Unimplemented, "method FetchRequests not implemented")
+}
+func (UnimplementedHttpProxyServiceServer) SendResponse(context.Context, *HttpHandlerResponse) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SendResponse not implemented")
+}
+func (UnimplementedHttpProxyServiceServer) StreamResponse(grpc.ClientStreamingServer[HttpHandlerResponse, emptypb.Empty]) error {
+	return status.Error(codes.Unimplemented, "method StreamResponse not implemented")
 }
 func (UnimplementedHttpProxyServiceServer) mustEmbedUnimplementedHttpProxyServiceServer() {}
 func (UnimplementedHttpProxyServiceServer) testEmbeddedByValue()                          {}
@@ -121,6 +181,17 @@ func _HttpProxyService_FetchRequest_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HttpProxyService_StreamRequest_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(emptypb.Empty)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(HttpProxyServiceServer).StreamRequest(m, &grpc.GenericServerStream[emptypb.Empty, HttpHandlerRequest]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type HttpProxyService_StreamRequestServer = grpc.ServerStreamingServer[HttpHandlerRequest]
+
 func _HttpProxyService_FetchRequests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(HttpHandlerFetchRequest)
 	if err := dec(in); err != nil {
@@ -139,6 +210,31 @@ func _HttpProxyService_FetchRequests_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HttpProxyService_SendResponse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HttpHandlerResponse)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HttpProxyServiceServer).SendResponse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HttpProxyService_SendResponse_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HttpProxyServiceServer).SendResponse(ctx, req.(*HttpHandlerResponse))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HttpProxyService_StreamResponse_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(HttpProxyServiceServer).StreamResponse(&grpc.GenericServerStream[HttpHandlerResponse, emptypb.Empty]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type HttpProxyService_StreamResponseServer = grpc.ClientStreamingServer[HttpHandlerResponse, emptypb.Empty]
+
 // HttpProxyService_ServiceDesc is the grpc.ServiceDesc for HttpProxyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -154,7 +250,22 @@ var HttpProxyService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "FetchRequests",
 			Handler:    _HttpProxyService_FetchRequests_Handler,
 		},
+		{
+			MethodName: "SendResponse",
+			Handler:    _HttpProxyService_SendResponse_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamRequest",
+			Handler:       _HttpProxyService_StreamRequest_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "StreamResponse",
+			Handler:       _HttpProxyService_StreamResponse_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "http/v2/service.proto",
 }
