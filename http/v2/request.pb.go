@@ -34,6 +34,7 @@ type HttpHandlerRequest struct {
 	Parsed        bool                        `protobuf:"varint,9,opt,name=parsed,proto3" json:"parsed,omitempty"`
 	Uploads       []byte                      `protobuf:"bytes,10,opt,name=uploads,proto3" json:"uploads,omitempty"`
 	Attributes    map[string]*HttpHeaderValue `protobuf:"bytes,11,rep,name=attributes,proto3" json:"attributes,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Body          []byte                      `protobuf:"bytes,12,opt,name=body,proto3" json:"body,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -145,6 +146,13 @@ func (x *HttpHandlerRequest) GetAttributes() map[string]*HttpHeaderValue {
 	return nil
 }
 
+func (x *HttpHandlerRequest) GetBody() []byte {
+	if x != nil {
+		return x.Body
+	}
+	return nil
+}
+
 type HttpHandlerFetchRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	BatchSize     int64                  `protobuf:"varint,1,opt,name=batch_size,json=batchSize,proto3" json:"batch_size,omitempty"`
@@ -237,7 +245,7 @@ var File_http_v2_request_proto protoreflect.FileDescriptor
 
 const file_http_v2_request_proto_rawDesc = "" +
 	"\n" +
-	"\x15http/v2/request.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xb0\x05\n" +
+	"\x15http/v2/request.proto\x12\ahttp.v2\x1a\x12http/v2/http.proto\"\xc4\x05\n" +
 	"\x12HttpHandlerRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
 	"\vremote_addr\x18\x02 \x01(\tR\n" +
@@ -253,7 +261,8 @@ const file_http_v2_request_proto_rawDesc = "" +
 	" \x01(\fR\auploads\x12K\n" +
 	"\n" +
 	"attributes\x18\v \x03(\v2+.http.v2.HttpHandlerRequest.AttributesEntryR\n" +
-	"attributes\x1aS\n" +
+	"attributes\x12\x12\n" +
+	"\x04body\x18\f \x01(\fR\x04body\x1aS\n" +
 	"\vHeaderEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\v2\x18.http.v2.HttpHeaderValueR\x05value:\x028\x01\x1aT\n" +
