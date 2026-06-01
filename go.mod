@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	connectrpc.com/connect v1.19.2
-	go.temporal.io/api v1.62.12
+	go.temporal.io/api v1.62.13
 	google.golang.org/grpc v1.81.1
 	google.golang.org/protobuf v1.36.11
 )
