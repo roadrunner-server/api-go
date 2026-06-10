@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: centrifugo/api/v1/api.proto
 
-package v1
+package apiV1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -8914,7 +8914,7 @@ const file_centrifugo_api_v1_api_proto_rawDesc = "" +
 	"\x14SendPushNotification\x127.centrifugal.centrifugo.api.SendPushNotificationRequest\x1a8.centrifugal.centrifugo.api.SendPushNotificationResponse\"\x00\x12\x7f\n" +
 	"\x10UpdatePushStatus\x123.centrifugal.centrifugo.api.UpdatePushStatusRequest\x1a4.centrifugal.centrifugo.api.UpdatePushStatusResponse\"\x00\x12m\n" +
 	"\n" +
-	"CancelPush\x12-.centrifugal.centrifugo.api.CancelPushRequest\x1a..centrifugal.centrifugo.api.CancelPushResponse\"\x00BgZ\x11centrifugo/api/v1\xca\x02!RoadRunner\\Centrifugal\\API\\DTO\\V1\xe2\x02-RoadRunner\\Centrifugal\\API\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"CancelPush\x12-.centrifugal.centrifugo.api.CancelPushRequest\x1a..centrifugal.centrifugo.api.CancelPushResponse\"\x00B\x94\x01Z>github.com/roadrunner-server/api-go/v6/centrifugo/api/v1;apiV1\xca\x02!RoadRunner\\Centrifugal\\API\\DTO\\V1\xe2\x02-RoadRunner\\Centrifugal\\API\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_centrifugo_api_v1_api_proto_rawDescOnce sync.Once

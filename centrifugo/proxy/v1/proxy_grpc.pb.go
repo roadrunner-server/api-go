@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: centrifugo/proxy/v1/proxy.proto
 
-package v1
+package proxyV1
 
 import (
 	context "context"

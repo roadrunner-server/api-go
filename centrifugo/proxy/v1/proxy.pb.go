@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: centrifugo/proxy/v1/proxy.proto
 
-package v1
+package proxyV1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -2594,7 +2594,7 @@ const file_centrifugo_proxy_v1_proxy_proto_rawDesc = "" +
 	"\x17SubscribeUnidirectional\x12..centrifugal.centrifugo.proxy.SubscribeRequest\x1a5.centrifugal.centrifugo.proxy.StreamSubscribeResponse0\x01\x12\x89\x01\n" +
 	"\x16SubscribeBidirectional\x124.centrifugal.centrifugo.proxy.StreamSubscribeRequest\x1a5.centrifugal.centrifugo.proxy.StreamSubscribeResponse(\x010\x01\x12\x81\x01\n" +
 	"\x10NotifyCacheEmpty\x125.centrifugal.centrifugo.proxy.NotifyCacheEmptyRequest\x1a6.centrifugal.centrifugo.proxy.NotifyCacheEmptyResponse\x12\x87\x01\n" +
-	"\x12NotifyChannelState\x127.centrifugal.centrifugo.proxy.NotifyChannelStateRequest\x1a8.centrifugal.centrifugo.proxy.NotifyChannelStateResponseBmZ\x13centrifugo/proxy/v1\xca\x02#RoadRunner\\Centrifugal\\Proxy\\DTO\\V1\xe2\x02/RoadRunner\\Centrifugal\\Proxy\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\x12NotifyChannelState\x127.centrifugal.centrifugo.proxy.NotifyChannelStateRequest\x1a8.centrifugal.centrifugo.proxy.NotifyChannelStateResponseB\x9c\x01ZBgithub.com/roadrunner-server/api-go/v6/centrifugo/proxy/v1;proxyV1\xca\x02#RoadRunner\\Centrifugal\\Proxy\\DTO\\V1\xe2\x02/RoadRunner\\Centrifugal\\Proxy\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_centrifugo_proxy_v1_proxy_proto_rawDescOnce sync.Once
