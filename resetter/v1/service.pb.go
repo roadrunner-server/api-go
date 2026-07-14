@@ -200,10 +200,7 @@ const file_resetter_v1_service_proto_rawDesc = "" +
 	"\fResetRequest\x12\x16\n" +
 	"\x06plugin\x18\x01 \x01(\tR\x06plugin\"\x1a\n" +
 	"\bResponse\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02ok2\x9b\x01\n" +
-	"\x0fResetterService\x12M\n" +
-	"\vListPlugins\x12\x1f.resetter.v1.ListPluginsRequest\x1a\x18.resetter.v1.PluginsList\"\x03\x90\x02\x01\x129\n" +
-	"\x05Reset\x12\x19.resetter.v1.ResetRequest\x1a\x15.resetter.v1.ResponseB\x85\x01Z=github.com/roadrunner-server/api-go/v6/resetter/v1;resetterV1\xca\x02\x1aRoadRunner\\Resetter\\DTO\\V1\xe2\x02&RoadRunner\\Resetter\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\x02ok\x18\x01 \x01(\bR\x02okB\x85\x01Z=github.com/roadrunner-server/api-go/v6/resetter/v1;resetterV1\xca\x02\x1aRoadRunner\\Resetter\\DTO\\V1\xe2\x02&RoadRunner\\Resetter\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_resetter_v1_service_proto_rawDescOnce sync.Once
@@ -225,12 +222,8 @@ var file_resetter_v1_service_proto_goTypes = []any{
 	(*Response)(nil),           // 3: resetter.v1.Response
 }
 var file_resetter_v1_service_proto_depIdxs = []int32{
-	0, // 0: resetter.v1.ResetterService.ListPlugins:input_type -> resetter.v1.ListPluginsRequest
-	2, // 1: resetter.v1.ResetterService.Reset:input_type -> resetter.v1.ResetRequest
-	1, // 2: resetter.v1.ResetterService.ListPlugins:output_type -> resetter.v1.PluginsList
-	3, // 3: resetter.v1.ResetterService.Reset:output_type -> resetter.v1.Response
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for method output_type
+	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -249,7 +242,7 @@ func file_resetter_v1_service_proto_init() {
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
 		GoTypes:           file_resetter_v1_service_proto_goTypes,
 		DependencyIndexes: file_resetter_v1_service_proto_depIdxs,

@@ -666,14 +666,7 @@ const file_informer_v1_service_proto_rawDesc = "" +
 	"\x13RemoveWorkerRequest\x12\x16\n" +
 	"\x06plugin\x18\x01 \x01(\tR\x06plugin\"\x1a\n" +
 	"\bResponse\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02ok2\xfd\x02\n" +
-	"\x0fInformerService\x12M\n" +
-	"\vListPlugins\x12\x1f.informer.v1.ListPluginsRequest\x1a\x18.informer.v1.PluginsList\"\x03\x90\x02\x01\x12K\n" +
-	"\n" +
-	"GetWorkers\x12\x1e.informer.v1.GetWorkersRequest\x1a\x18.informer.v1.WorkersList\"\x03\x90\x02\x01\x12B\n" +
-	"\aGetJobs\x12\x1b.informer.v1.GetJobsRequest\x1a\x15.informer.v1.JobsList\"\x03\x90\x02\x01\x12A\n" +
-	"\tAddWorker\x12\x1d.informer.v1.AddWorkerRequest\x1a\x15.informer.v1.Response\x12G\n" +
-	"\fRemoveWorker\x12 .informer.v1.RemoveWorkerRequest\x1a\x15.informer.v1.ResponseB\x85\x01Z=github.com/roadrunner-server/api-go/v6/informer/v1;informerV1\xca\x02\x1aRoadRunner\\Informer\\DTO\\V1\xe2\x02&RoadRunner\\Informer\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\x02ok\x18\x01 \x01(\bR\x02okB\x85\x01Z=github.com/roadrunner-server/api-go/v6/informer/v1;informerV1\xca\x02\x1aRoadRunner\\Informer\\DTO\\V1\xe2\x02&RoadRunner\\Informer\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_informer_v1_service_proto_rawDescOnce sync.Once
@@ -702,23 +695,13 @@ var file_informer_v1_service_proto_goTypes = []any{
 	(*Response)(nil),            // 10: informer.v1.Response
 }
 var file_informer_v1_service_proto_depIdxs = []int32{
-	0,  // 0: informer.v1.WorkersList.workers:type_name -> informer.v1.ProcessState
-	1,  // 1: informer.v1.JobsList.states:type_name -> informer.v1.JobState
-	2,  // 2: informer.v1.InformerService.ListPlugins:input_type -> informer.v1.ListPluginsRequest
-	4,  // 3: informer.v1.InformerService.GetWorkers:input_type -> informer.v1.GetWorkersRequest
-	6,  // 4: informer.v1.InformerService.GetJobs:input_type -> informer.v1.GetJobsRequest
-	8,  // 5: informer.v1.InformerService.AddWorker:input_type -> informer.v1.AddWorkerRequest
-	9,  // 6: informer.v1.InformerService.RemoveWorker:input_type -> informer.v1.RemoveWorkerRequest
-	3,  // 7: informer.v1.InformerService.ListPlugins:output_type -> informer.v1.PluginsList
-	5,  // 8: informer.v1.InformerService.GetWorkers:output_type -> informer.v1.WorkersList
-	7,  // 9: informer.v1.InformerService.GetJobs:output_type -> informer.v1.JobsList
-	10, // 10: informer.v1.InformerService.AddWorker:output_type -> informer.v1.Response
-	10, // 11: informer.v1.InformerService.RemoveWorker:output_type -> informer.v1.Response
-	7,  // [7:12] is the sub-list for method output_type
-	2,  // [2:7] is the sub-list for method input_type
-	2,  // [2:2] is the sub-list for extension type_name
-	2,  // [2:2] is the sub-list for extension extendee
-	0,  // [0:2] is the sub-list for field type_name
+	0, // 0: informer.v1.WorkersList.workers:type_name -> informer.v1.ProcessState
+	1, // 1: informer.v1.JobsList.states:type_name -> informer.v1.JobState
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_informer_v1_service_proto_init() }
@@ -734,7 +717,7 @@ func file_informer_v1_service_proto_init() {
 			NumEnums:      0,
 			NumMessages:   11,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
 		GoTypes:           file_informer_v1_service_proto_goTypes,
 		DependencyIndexes: file_informer_v1_service_proto_depIdxs,

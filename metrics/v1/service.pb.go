@@ -698,15 +698,7 @@ const file_metrics_v1_service_proto_rawDesc = "" +
 	"\x18COLLECTOR_TYPE_HISTOGRAM\x10\x01\x12\x18\n" +
 	"\x14COLLECTOR_TYPE_GAUGE\x10\x02\x12\x1a\n" +
 	"\x16COLLECTOR_TYPE_COUNTER\x10\x03\x12\x1a\n" +
-	"\x16COLLECTOR_TYPE_SUMMARY\x10\x042\xec\x02\n" +
-	"\x0eMetricsService\x123\n" +
-	"\x03Add\x12\x16.metrics.v1.AddRequest\x1a\x14.metrics.v1.Response\x123\n" +
-	"\x03Sub\x12\x16.metrics.v1.SubRequest\x1a\x14.metrics.v1.Response\x12;\n" +
-	"\aObserve\x12\x1a.metrics.v1.ObserveRequest\x1a\x14.metrics.v1.Response\x123\n" +
-	"\x03Set\x12\x16.metrics.v1.SetRequest\x1a\x14.metrics.v1.Response\x12;\n" +
-	"\aDeclare\x12\x1a.metrics.v1.DeclareRequest\x1a\x14.metrics.v1.Response\x12A\n" +
-	"\n" +
-	"Unregister\x12\x1d.metrics.v1.UnregisterRequest\x1a\x14.metrics.v1.ResponseB\x81\x01Z;github.com/roadrunner-server/api-go/v6/metrics/v1;metricsV1\xca\x02\x19RoadRunner\\Metrics\\DTO\\V1\xe2\x02%RoadRunner\\Metrics\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\x16COLLECTOR_TYPE_SUMMARY\x10\x04B\x81\x01Z;github.com/roadrunner-server/api-go/v6/metrics/v1;metricsV1\xca\x02\x19RoadRunner\\Metrics\\DTO\\V1\xe2\x02%RoadRunner\\Metrics\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_metrics_v1_service_proto_rawDescOnce sync.Once
@@ -737,31 +729,19 @@ var file_metrics_v1_service_proto_goTypes = []any{
 	(*Response)(nil),          // 11: metrics.v1.Response
 }
 var file_metrics_v1_service_proto_depIdxs = []int32{
-	0,  // 0: metrics.v1.Collector.type:type_name -> metrics.v1.CollectorType
-	1,  // 1: metrics.v1.Collector.objectives:type_name -> metrics.v1.Objective
-	2,  // 2: metrics.v1.NamedCollector.collector:type_name -> metrics.v1.Collector
-	3,  // 3: metrics.v1.AddRequest.metric:type_name -> metrics.v1.Metric
-	3,  // 4: metrics.v1.SubRequest.metric:type_name -> metrics.v1.Metric
-	3,  // 5: metrics.v1.ObserveRequest.metric:type_name -> metrics.v1.Metric
-	3,  // 6: metrics.v1.SetRequest.metric:type_name -> metrics.v1.Metric
-	4,  // 7: metrics.v1.DeclareRequest.collector:type_name -> metrics.v1.NamedCollector
-	5,  // 8: metrics.v1.MetricsService.Add:input_type -> metrics.v1.AddRequest
-	6,  // 9: metrics.v1.MetricsService.Sub:input_type -> metrics.v1.SubRequest
-	7,  // 10: metrics.v1.MetricsService.Observe:input_type -> metrics.v1.ObserveRequest
-	8,  // 11: metrics.v1.MetricsService.Set:input_type -> metrics.v1.SetRequest
-	9,  // 12: metrics.v1.MetricsService.Declare:input_type -> metrics.v1.DeclareRequest
-	10, // 13: metrics.v1.MetricsService.Unregister:input_type -> metrics.v1.UnregisterRequest
-	11, // 14: metrics.v1.MetricsService.Add:output_type -> metrics.v1.Response
-	11, // 15: metrics.v1.MetricsService.Sub:output_type -> metrics.v1.Response
-	11, // 16: metrics.v1.MetricsService.Observe:output_type -> metrics.v1.Response
-	11, // 17: metrics.v1.MetricsService.Set:output_type -> metrics.v1.Response
-	11, // 18: metrics.v1.MetricsService.Declare:output_type -> metrics.v1.Response
-	11, // 19: metrics.v1.MetricsService.Unregister:output_type -> metrics.v1.Response
-	14, // [14:20] is the sub-list for method output_type
-	8,  // [8:14] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	0, // 0: metrics.v1.Collector.type:type_name -> metrics.v1.CollectorType
+	1, // 1: metrics.v1.Collector.objectives:type_name -> metrics.v1.Objective
+	2, // 2: metrics.v1.NamedCollector.collector:type_name -> metrics.v1.Collector
+	3, // 3: metrics.v1.AddRequest.metric:type_name -> metrics.v1.Metric
+	3, // 4: metrics.v1.SubRequest.metric:type_name -> metrics.v1.Metric
+	3, // 5: metrics.v1.ObserveRequest.metric:type_name -> metrics.v1.Metric
+	3, // 6: metrics.v1.SetRequest.metric:type_name -> metrics.v1.Metric
+	4, // 7: metrics.v1.DeclareRequest.collector:type_name -> metrics.v1.NamedCollector
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_metrics_v1_service_proto_init() }
@@ -777,7 +757,7 @@ func file_metrics_v1_service_proto_init() {
 			NumEnums:      1,
 			NumMessages:   11,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
 		GoTypes:           file_metrics_v1_service_proto_goTypes,
 		DependencyIndexes: file_metrics_v1_service_proto_depIdxs,

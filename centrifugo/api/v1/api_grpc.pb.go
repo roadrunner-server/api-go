@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: centrifugo/api/v1/api.proto
 
-package v1
+package apiV1
 
 import (
 	context "context"

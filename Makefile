@@ -20,10 +20,9 @@ update-proto-submodule:
 
 generate:
 	buf generate proto/api/roadrunner/api
-	buf generate --template buf.gen.connectrpc.yaml --exclude-path proto/api/roadrunner/api/centrifugo proto/api/roadrunner/api
 
 clean:
-	rm -rf applogger centrifugo common http jobs kv lock service status temporal websockets
+	rm -rf applogger centrifugo common http informer jobs kv lock metrics resetter service status tcp temporal websockets
 
 regenerate: clean generate
 

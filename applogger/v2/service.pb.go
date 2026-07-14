@@ -71,21 +71,10 @@ var File_applogger_v2_service_proto protoreflect.FileDescriptor
 
 const file_applogger_v2_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1aapplogger/v2/service.proto\x12\fapplogger.v2\x1a\x1capplogger/v2/applogger.proto\"&\n" +
+	"\x1aapplogger/v2/service.proto\x12\fapplogger.v2\"&\n" +
 	"\n" +
 	"LogMessage\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xa9\x05\n" +
-	"\x10AppLoggerService\x12<\n" +
-	"\x05Error\x12\x18.applogger.v2.LogMessage\x1a\x19.applogger.v2.LogResponse\x12E\n" +
-	"\x10ErrorWithContext\x12\x16.applogger.v2.LogEntry\x1a\x19.applogger.v2.LogResponse\x12;\n" +
-	"\x04Info\x12\x18.applogger.v2.LogMessage\x1a\x19.applogger.v2.LogResponse\x12D\n" +
-	"\x0fInfoWithContext\x12\x16.applogger.v2.LogEntry\x1a\x19.applogger.v2.LogResponse\x12>\n" +
-	"\aWarning\x12\x18.applogger.v2.LogMessage\x1a\x19.applogger.v2.LogResponse\x12G\n" +
-	"\x12WarningWithContext\x12\x16.applogger.v2.LogEntry\x1a\x19.applogger.v2.LogResponse\x12<\n" +
-	"\x05Debug\x12\x18.applogger.v2.LogMessage\x1a\x19.applogger.v2.LogResponse\x12E\n" +
-	"\x10DebugWithContext\x12\x16.applogger.v2.LogEntry\x1a\x19.applogger.v2.LogResponse\x12:\n" +
-	"\x03Log\x12\x18.applogger.v2.LogMessage\x1a\x19.applogger.v2.LogResponse\x12C\n" +
-	"\x0eLogWithContext\x12\x16.applogger.v2.LogEntry\x1a\x19.applogger.v2.LogResponseB\x89\x01Z?github.com/roadrunner-server/api-go/v6/applogger/v2;apploggerV2\xca\x02\x1bRoadRunner\\AppLogger\\DTO\\V2\xe2\x02'RoadRunner\\AppLogger\\DTO\\V2\\GPBMetadatab\x06proto3"
+	"\amessage\x18\x01 \x01(\tR\amessageB\x89\x01Z?github.com/roadrunner-server/api-go/v6/applogger/v2;apploggerV2\xca\x02\x1bRoadRunner\\AppLogger\\DTO\\V2\xe2\x02'RoadRunner\\AppLogger\\DTO\\V2\\GPBMetadatab\x06proto3"
 
 var (
 	file_applogger_v2_service_proto_rawDescOnce sync.Once
@@ -101,36 +90,14 @@ func file_applogger_v2_service_proto_rawDescGZIP() []byte {
 
 var file_applogger_v2_service_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_applogger_v2_service_proto_goTypes = []any{
-	(*LogMessage)(nil),  // 0: applogger.v2.LogMessage
-	(*LogEntry)(nil),    // 1: applogger.v2.LogEntry
-	(*LogResponse)(nil), // 2: applogger.v2.LogResponse
+	(*LogMessage)(nil), // 0: applogger.v2.LogMessage
 }
 var file_applogger_v2_service_proto_depIdxs = []int32{
-	0,  // 0: applogger.v2.AppLoggerService.Error:input_type -> applogger.v2.LogMessage
-	1,  // 1: applogger.v2.AppLoggerService.ErrorWithContext:input_type -> applogger.v2.LogEntry
-	0,  // 2: applogger.v2.AppLoggerService.Info:input_type -> applogger.v2.LogMessage
-	1,  // 3: applogger.v2.AppLoggerService.InfoWithContext:input_type -> applogger.v2.LogEntry
-	0,  // 4: applogger.v2.AppLoggerService.Warning:input_type -> applogger.v2.LogMessage
-	1,  // 5: applogger.v2.AppLoggerService.WarningWithContext:input_type -> applogger.v2.LogEntry
-	0,  // 6: applogger.v2.AppLoggerService.Debug:input_type -> applogger.v2.LogMessage
-	1,  // 7: applogger.v2.AppLoggerService.DebugWithContext:input_type -> applogger.v2.LogEntry
-	0,  // 8: applogger.v2.AppLoggerService.Log:input_type -> applogger.v2.LogMessage
-	1,  // 9: applogger.v2.AppLoggerService.LogWithContext:input_type -> applogger.v2.LogEntry
-	2,  // 10: applogger.v2.AppLoggerService.Error:output_type -> applogger.v2.LogResponse
-	2,  // 11: applogger.v2.AppLoggerService.ErrorWithContext:output_type -> applogger.v2.LogResponse
-	2,  // 12: applogger.v2.AppLoggerService.Info:output_type -> applogger.v2.LogResponse
-	2,  // 13: applogger.v2.AppLoggerService.InfoWithContext:output_type -> applogger.v2.LogResponse
-	2,  // 14: applogger.v2.AppLoggerService.Warning:output_type -> applogger.v2.LogResponse
-	2,  // 15: applogger.v2.AppLoggerService.WarningWithContext:output_type -> applogger.v2.LogResponse
-	2,  // 16: applogger.v2.AppLoggerService.Debug:output_type -> applogger.v2.LogResponse
-	2,  // 17: applogger.v2.AppLoggerService.DebugWithContext:output_type -> applogger.v2.LogResponse
-	2,  // 18: applogger.v2.AppLoggerService.Log:output_type -> applogger.v2.LogResponse
-	2,  // 19: applogger.v2.AppLoggerService.LogWithContext:output_type -> applogger.v2.LogResponse
-	10, // [10:20] is the sub-list for method output_type
-	0,  // [0:10] is the sub-list for method input_type
-	0,  // [0:0] is the sub-list for extension type_name
-	0,  // [0:0] is the sub-list for extension extendee
-	0,  // [0:0] is the sub-list for field type_name
+	0, // [0:0] is the sub-list for method output_type
+	0, // [0:0] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_applogger_v2_service_proto_init() }
@@ -138,7 +105,6 @@ func file_applogger_v2_service_proto_init() {
 	if File_applogger_v2_service_proto != nil {
 		return
 	}
-	file_applogger_v2_applogger_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
@@ -147,7 +113,7 @@ func file_applogger_v2_service_proto_init() {
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
 		GoTypes:           file_applogger_v2_service_proto_goTypes,
 		DependencyIndexes: file_applogger_v2_service_proto_depIdxs,
