@@ -117,10 +117,7 @@ const file_tcp_v1_service_proto_rawDesc = "" +
 	"\fCloseRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\x1a\n" +
 	"\bResponse\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02ok2=\n" +
-	"\n" +
-	"TCPService\x12/\n" +
-	"\x05Close\x12\x14.tcp.v1.CloseRequest\x1a\x10.tcp.v1.ResponseBqZ3github.com/roadrunner-server/api-go/v6/tcp/v1;tcpV1\xca\x02\x15RoadRunner\\TCP\\DTO\\V1\xe2\x02!RoadRunner\\TCP\\DTO\\V1\\GPBMetadatab\x06proto3"
+	"\x02ok\x18\x01 \x01(\bR\x02okBqZ3github.com/roadrunner-server/api-go/v6/tcp/v1;tcpV1\xca\x02\x15RoadRunner\\TCP\\DTO\\V1\xe2\x02!RoadRunner\\TCP\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
 	file_tcp_v1_service_proto_rawDescOnce sync.Once
@@ -140,10 +137,8 @@ var file_tcp_v1_service_proto_goTypes = []any{
 	(*Response)(nil),     // 1: tcp.v1.Response
 }
 var file_tcp_v1_service_proto_depIdxs = []int32{
-	0, // 0: tcp.v1.TCPService.Close:input_type -> tcp.v1.CloseRequest
-	1, // 1: tcp.v1.TCPService.Close:output_type -> tcp.v1.Response
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for method output_type
+	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -162,7 +157,7 @@ func file_tcp_v1_service_proto_init() {
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
 		GoTypes:           file_tcp_v1_service_proto_goTypes,
 		DependencyIndexes: file_tcp_v1_service_proto_depIdxs,

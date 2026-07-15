@@ -3,7 +3,6 @@ module github.com/roadrunner-server/api-go/v6
 go 1.26
 
 require (
-	connectrpc.com/connect v1.20.0
 	go.temporal.io/api v1.62.12
 	google.golang.org/grpc v1.81.1
 	google.golang.org/protobuf v1.36.11
