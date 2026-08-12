@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type LockRequest struct {
+type Request struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Resource      string                 `protobuf:"bytes,1,opt,name=resource,proto3" json:"resource,omitempty"`
 	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
@@ -31,20 +31,20 @@ type LockRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LockRequest) Reset() {
-	*x = LockRequest{}
+func (x *Request) Reset() {
+	*x = Request{}
 	mi := &file_lock_v1_lock_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LockRequest) String() string {
+func (x *Request) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LockRequest) ProtoMessage() {}
+func (*Request) ProtoMessage() {}
 
-func (x *LockRequest) ProtoReflect() protoreflect.Message {
+func (x *Request) ProtoReflect() protoreflect.Message {
 	mi := &file_lock_v1_lock_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,60 +56,60 @@ func (x *LockRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LockRequest.ProtoReflect.Descriptor instead.
-func (*LockRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use Request.ProtoReflect.Descriptor instead.
+func (*Request) Descriptor() ([]byte, []int) {
 	return file_lock_v1_lock_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *LockRequest) GetResource() string {
+func (x *Request) GetResource() string {
 	if x != nil {
 		return x.Resource
 	}
 	return ""
 }
 
-func (x *LockRequest) GetId() string {
+func (x *Request) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *LockRequest) GetTtl() int64 {
+func (x *Request) GetTtl() int64 {
 	if x != nil && x.Ttl != nil {
 		return *x.Ttl
 	}
 	return 0
 }
 
-func (x *LockRequest) GetWait() int64 {
+func (x *Request) GetWait() int64 {
 	if x != nil && x.Wait != nil {
 		return *x.Wait
 	}
 	return 0
 }
 
-type LockResponse struct {
+type Response struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LockResponse) Reset() {
-	*x = LockResponse{}
+func (x *Response) Reset() {
+	*x = Response{}
 	mi := &file_lock_v1_lock_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LockResponse) String() string {
+func (x *Response) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LockResponse) ProtoMessage() {}
+func (*Response) ProtoMessage() {}
 
-func (x *LockResponse) ProtoReflect() protoreflect.Message {
+func (x *Response) ProtoReflect() protoreflect.Message {
 	mi := &file_lock_v1_lock_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -121,12 +121,12 @@ func (x *LockResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LockResponse.ProtoReflect.Descriptor instead.
-func (*LockResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use Response.ProtoReflect.Descriptor instead.
+func (*Response) Descriptor() ([]byte, []int) {
 	return file_lock_v1_lock_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *LockResponse) GetOk() bool {
+func (x *Response) GetOk() bool {
 	if x != nil {
 		return x.Ok
 	}
@@ -137,15 +137,15 @@ var File_lock_v1_lock_proto protoreflect.FileDescriptor
 
 const file_lock_v1_lock_proto_rawDesc = "" +
 	"\n" +
-	"\x12lock/v1/lock.proto\x12\alock.v1\"z\n" +
-	"\vLockRequest\x12\x1a\n" +
+	"\x12lock/v1/lock.proto\x12\alock.v1\"v\n" +
+	"\aRequest\x12\x1a\n" +
 	"\bresource\x18\x01 \x01(\tR\bresource\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\tR\x02id\x12\x15\n" +
 	"\x03ttl\x18\x03 \x01(\x03H\x00R\x03ttl\x88\x01\x01\x12\x17\n" +
 	"\x04wait\x18\x04 \x01(\x03H\x01R\x04wait\x88\x01\x01B\x06\n" +
 	"\x04_ttlB\a\n" +
-	"\x05_wait\"\x1e\n" +
-	"\fLockResponse\x12\x0e\n" +
+	"\x05_wait\"\x1a\n" +
+	"\bResponse\x12\x0e\n" +
 	"\x02ok\x18\x01 \x01(\bR\x02okBuZ5github.com/roadrunner-server/api-go/v6/lock/v1;lockV1\xca\x02\x16RoadRunner\\Lock\\DTO\\V1\xe2\x02\"RoadRunner\\Lock\\DTO\\V1\\GPBMetadatab\x06proto3"
 
 var (
@@ -162,8 +162,8 @@ func file_lock_v1_lock_proto_rawDescGZIP() []byte {
 
 var file_lock_v1_lock_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_lock_v1_lock_proto_goTypes = []any{
-	(*LockRequest)(nil),  // 0: lock.v1.LockRequest
-	(*LockResponse)(nil), // 1: lock.v1.LockResponse
+	(*Request)(nil),  // 0: lock.v1.Request
+	(*Response)(nil), // 1: lock.v1.Response
 }
 var file_lock_v1_lock_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
