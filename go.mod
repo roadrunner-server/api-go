@@ -4,7 +4,7 @@ go 1.27
 
 require (
 	go.temporal.io/api v1.63.5
-	google.golang.org/grpc v1.83.1
+	google.golang.org/grpc v1.83.2
 	google.golang.org/protobuf v1.36.12
 )
 
