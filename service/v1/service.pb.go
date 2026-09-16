@@ -183,6 +183,163 @@ func (x *Create) GetTimeoutStopSec() uint64 {
 	return 0
 }
 
+// Update stores configuration for subsequent executions of an existing service.
+// Current processes keep their execution settings. Omitted fields keep their stored values.
+// A name-only update succeeds. Response.ok confirms that the configuration was accepted.
+type Update struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Desired process count, at least 1. Changes apply at the next restart opportunity.
+	// Excess processes finish their current execution before removal.
+	ProcessNum *int64 `protobuf:"varint,2,opt,name=process_num,json=processNum,proto3,oneof" json:"process_num,omitempty"`
+	// Maximum execution time in seconds, at least 0. Zero means unlimited.
+	ExecTimeout *int64 `protobuf:"varint,3,opt,name=exec_timeout,json=execTimeout,proto3,oneof" json:"exec_timeout,omitempty"`
+	// Whether to restart after exit. The latest value controls subsequent starts.
+	RemainAfterExit *bool `protobuf:"varint,4,opt,name=remain_after_exit,json=remainAfterExit,proto3,oneof" json:"remain_after_exit,omitempty"`
+	// Replaces the service environment overrides. A present empty message clears them.
+	// Processes also inherit the RoadRunner environment.
+	Env *Environment `protobuf:"bytes,5,opt,name=env,proto3" json:"env,omitempty"`
+	// Delay in seconds for the next scheduled restart. Zero selects 30 seconds.
+	RestartSec *uint64 `protobuf:"varint,6,opt,name=restart_sec,json=restartSec,proto3,oneof" json:"restart_sec,omitempty"`
+	// Whether subsequent executions include the service name in log attributes.
+	ServiceNameInLogs *bool `protobuf:"varint,7,opt,name=service_name_in_logs,json=serviceNameInLogs,proto3,oneof" json:"service_name_in_logs,omitempty"`
+	// Stop timeout in seconds for subsequent executions. Zero selects 5 seconds.
+	TimeoutStopSec *uint64 `protobuf:"varint,8,opt,name=timeout_stop_sec,json=timeoutStopSec,proto3,oneof" json:"timeout_stop_sec,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *Update) Reset() {
+	*x = Update{}
+	mi := &file_service_v1_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Update) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Update) ProtoMessage() {}
+
+func (x *Update) ProtoReflect() protoreflect.Message {
+	mi := &file_service_v1_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Update.ProtoReflect.Descriptor instead.
+func (*Update) Descriptor() ([]byte, []int) {
+	return file_service_v1_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Update) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Update) GetProcessNum() int64 {
+	if x != nil && x.ProcessNum != nil {
+		return *x.ProcessNum
+	}
+	return 0
+}
+
+func (x *Update) GetExecTimeout() int64 {
+	if x != nil && x.ExecTimeout != nil {
+		return *x.ExecTimeout
+	}
+	return 0
+}
+
+func (x *Update) GetRemainAfterExit() bool {
+	if x != nil && x.RemainAfterExit != nil {
+		return *x.RemainAfterExit
+	}
+	return false
+}
+
+func (x *Update) GetEnv() *Environment {
+	if x != nil {
+		return x.Env
+	}
+	return nil
+}
+
+func (x *Update) GetRestartSec() uint64 {
+	if x != nil && x.RestartSec != nil {
+		return *x.RestartSec
+	}
+	return 0
+}
+
+func (x *Update) GetServiceNameInLogs() bool {
+	if x != nil && x.ServiceNameInLogs != nil {
+		return *x.ServiceNameInLogs
+	}
+	return false
+}
+
+func (x *Update) GetTimeoutStopSec() uint64 {
+	if x != nil && x.TimeoutStopSec != nil {
+		return *x.TimeoutStopSec
+	}
+	return 0
+}
+
+// Environment contains the complete set of service environment overrides.
+type Environment struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Values        map[string]string      `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Environment) Reset() {
+	*x = Environment{}
+	mi := &file_service_v1_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Environment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Environment) ProtoMessage() {}
+
+func (x *Environment) ProtoReflect() protoreflect.Message {
+	mi := &file_service_v1_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Environment.ProtoReflect.Descriptor instead.
+func (*Environment) Descriptor() ([]byte, []int) {
+	return file_service_v1_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Environment) GetValues() map[string]string {
+	if x != nil {
+		return x.Values
+	}
+	return nil
+}
+
 type Statuses struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Status        []*Status              `protobuf:"bytes,1,rep,name=status,proto3" json:"status,omitempty"`
@@ -192,7 +349,7 @@ type Statuses struct {
 
 func (x *Statuses) Reset() {
 	*x = Statuses{}
-	mi := &file_service_v1_service_proto_msgTypes[2]
+	mi := &file_service_v1_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -204,7 +361,7 @@ func (x *Statuses) String() string {
 func (*Statuses) ProtoMessage() {}
 
 func (x *Statuses) ProtoReflect() protoreflect.Message {
-	mi := &file_service_v1_service_proto_msgTypes[2]
+	mi := &file_service_v1_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -217,7 +374,7 @@ func (x *Statuses) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Statuses.ProtoReflect.Descriptor instead.
 func (*Statuses) Descriptor() ([]byte, []int) {
-	return file_service_v1_service_proto_rawDescGZIP(), []int{2}
+	return file_service_v1_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Statuses) GetStatus() []*Status {
@@ -241,7 +398,7 @@ type Status struct {
 
 func (x *Status) Reset() {
 	*x = Status{}
-	mi := &file_service_v1_service_proto_msgTypes[3]
+	mi := &file_service_v1_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -253,7 +410,7 @@ func (x *Status) String() string {
 func (*Status) ProtoMessage() {}
 
 func (x *Status) ProtoReflect() protoreflect.Message {
-	mi := &file_service_v1_service_proto_msgTypes[3]
+	mi := &file_service_v1_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -266,7 +423,7 @@ func (x *Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Status.ProtoReflect.Descriptor instead.
 func (*Status) Descriptor() ([]byte, []int) {
-	return file_service_v1_service_proto_rawDescGZIP(), []int{3}
+	return file_service_v1_service_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Status) GetCpuPercent() float32 {
@@ -313,7 +470,7 @@ type Service struct {
 
 func (x *Service) Reset() {
 	*x = Service{}
-	mi := &file_service_v1_service_proto_msgTypes[4]
+	mi := &file_service_v1_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -325,7 +482,7 @@ func (x *Service) String() string {
 func (*Service) ProtoMessage() {}
 
 func (x *Service) ProtoReflect() protoreflect.Message {
-	mi := &file_service_v1_service_proto_msgTypes[4]
+	mi := &file_service_v1_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -338,7 +495,7 @@ func (x *Service) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Service.ProtoReflect.Descriptor instead.
 func (*Service) Descriptor() ([]byte, []int) {
-	return file_service_v1_service_proto_rawDescGZIP(), []int{4}
+	return file_service_v1_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Service) GetName() string {
@@ -357,7 +514,7 @@ type List struct {
 
 func (x *List) Reset() {
 	*x = List{}
-	mi := &file_service_v1_service_proto_msgTypes[5]
+	mi := &file_service_v1_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -369,7 +526,7 @@ func (x *List) String() string {
 func (*List) ProtoMessage() {}
 
 func (x *List) ProtoReflect() protoreflect.Message {
-	mi := &file_service_v1_service_proto_msgTypes[5]
+	mi := &file_service_v1_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -382,7 +539,7 @@ func (x *List) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use List.ProtoReflect.Descriptor instead.
 func (*List) Descriptor() ([]byte, []int) {
-	return file_service_v1_service_proto_rawDescGZIP(), []int{5}
+	return file_service_v1_service_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *List) GetServices() []string {
@@ -415,6 +572,28 @@ const file_service_v1_service_proto_rawDesc = "" +
 	"\x10timeout_stop_sec\x18\t \x01(\x04R\x0etimeoutStopSec\x1a6\n" +
 	"\bEnvEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xc6\x03\n" +
+	"\x06Update\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12$\n" +
+	"\vprocess_num\x18\x02 \x01(\x03H\x00R\n" +
+	"processNum\x88\x01\x01\x12&\n" +
+	"\fexec_timeout\x18\x03 \x01(\x03H\x01R\vexecTimeout\x88\x01\x01\x12/\n" +
+	"\x11remain_after_exit\x18\x04 \x01(\bH\x02R\x0fremainAfterExit\x88\x01\x01\x12)\n" +
+	"\x03env\x18\x05 \x01(\v2\x17.service.v1.EnvironmentR\x03env\x12$\n" +
+	"\vrestart_sec\x18\x06 \x01(\x04H\x03R\n" +
+	"restartSec\x88\x01\x01\x124\n" +
+	"\x14service_name_in_logs\x18\a \x01(\bH\x04R\x11serviceNameInLogs\x88\x01\x01\x12-\n" +
+	"\x10timeout_stop_sec\x18\b \x01(\x04H\x05R\x0etimeoutStopSec\x88\x01\x01B\x0e\n" +
+	"\f_process_numB\x0f\n" +
+	"\r_exec_timeoutB\x14\n" +
+	"\x12_remain_after_exitB\x0e\n" +
+	"\f_restart_secB\x17\n" +
+	"\x15_service_name_in_logsB\x13\n" +
+	"\x11_timeout_stop_sec\"\x85\x01\n" +
+	"\vEnvironment\x12;\n" +
+	"\x06values\x18\x01 \x03(\v2#.service.v1.Environment.ValuesEntryR\x06values\x1a9\n" +
+	"\vValuesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"6\n" +
 	"\bStatuses\x12*\n" +
 	"\x06status\x18\x01 \x03(\v2\x12.service.v1.StatusR\x06status\"\xa3\x01\n" +
@@ -442,26 +621,31 @@ func file_service_v1_service_proto_rawDescGZIP() []byte {
 	return file_service_v1_service_proto_rawDescData
 }
 
-var file_service_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_service_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_service_v1_service_proto_goTypes = []any{
-	(*Response)(nil),  // 0: service.v1.Response
-	(*Create)(nil),    // 1: service.v1.Create
-	(*Statuses)(nil),  // 2: service.v1.Statuses
-	(*Status)(nil),    // 3: service.v1.Status
-	(*Service)(nil),   // 4: service.v1.Service
-	(*List)(nil),      // 5: service.v1.List
-	nil,               // 6: service.v1.Create.EnvEntry
-	(*v1.Status)(nil), // 7: common.v1.Status
+	(*Response)(nil),    // 0: service.v1.Response
+	(*Create)(nil),      // 1: service.v1.Create
+	(*Update)(nil),      // 2: service.v1.Update
+	(*Environment)(nil), // 3: service.v1.Environment
+	(*Statuses)(nil),    // 4: service.v1.Statuses
+	(*Status)(nil),      // 5: service.v1.Status
+	(*Service)(nil),     // 6: service.v1.Service
+	(*List)(nil),        // 7: service.v1.List
+	nil,                 // 8: service.v1.Create.EnvEntry
+	nil,                 // 9: service.v1.Environment.ValuesEntry
+	(*v1.Status)(nil),   // 10: common.v1.Status
 }
 var file_service_v1_service_proto_depIdxs = []int32{
-	6, // 0: service.v1.Create.env:type_name -> service.v1.Create.EnvEntry
-	3, // 1: service.v1.Statuses.status:type_name -> service.v1.Status
-	7, // 2: service.v1.Status.status:type_name -> common.v1.Status
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	8,  // 0: service.v1.Create.env:type_name -> service.v1.Create.EnvEntry
+	3,  // 1: service.v1.Update.env:type_name -> service.v1.Environment
+	9,  // 2: service.v1.Environment.values:type_name -> service.v1.Environment.ValuesEntry
+	5,  // 3: service.v1.Statuses.status:type_name -> service.v1.Status
+	10, // 4: service.v1.Status.status:type_name -> common.v1.Status
+	5,  // [5:5] is the sub-list for method output_type
+	5,  // [5:5] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_service_v1_service_proto_init() }
@@ -469,13 +653,14 @@ func file_service_v1_service_proto_init() {
 	if File_service_v1_service_proto != nil {
 		return
 	}
+	file_service_v1_service_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_service_v1_service_proto_rawDesc), len(file_service_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
