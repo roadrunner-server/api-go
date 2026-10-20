@@ -5,7 +5,7 @@ go 1.27
 toolchain go1.27.2
 
 require (
-	go.temporal.io/api v1.63.7
+	go.temporal.io/api v1.64.0
 	google.golang.org/grpc v1.84.0
 	google.golang.org/protobuf v1.36.12
 )
